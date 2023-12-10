@@ -1,0 +1,5 @@
+# Исключить директорию node_modules
+node_modules/
+
+# Исключить все файлы в директории build
+build/
