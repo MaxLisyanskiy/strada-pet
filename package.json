@@ -11,7 +11,8 @@
     "lint:fix": "eslint . --ext ts, tsx --fix",
     "format": "prettier . --check",
     "format:fix": "prettier . --write",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "deploy": "npm run build && npx gh-pages -d dist"
   },
   "dependencies": {
     "@ant-design/icons": "^5.2.6",
