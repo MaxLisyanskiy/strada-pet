@@ -1,3 +1,5 @@
+import { ConfigProvider, theme } from 'antd';
+import { useSelector } from 'react-redux';
 import { Routes, Route } from 'react-router';
 import MainPage from './pages/main-page';
 import ParagraphDetails from './pages/paragraph-details';
@@ -6,15 +8,24 @@ import NotFoundPage from './pages/not-found-page';
 import Layout from './components/layout';
 
 const App = () => {
+  const getThemeFromStore = useSelector((state) => state.posts.userTheme);
+  const userTheme = !getThemeFromStore ? '' : theme.darkAlgorithm;
+
   return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<MainPage />} />
-        <Route path="/ParagraphDetails" element={<ParagraphDetails />} />
-        <Route path="/Profile" element={<Profile />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Route>
-    </Routes>
+    <ConfigProvider
+      theme={{
+        algorithm: userTheme,
+      }}
+    >
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<MainPage />} />
+          <Route path="/ParagraphDetails" element={<ParagraphDetails />} />
+          <Route path="/Profile" element={<Profile />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Route>
+      </Routes>
+    </ConfigProvider>
   );
 };
 
