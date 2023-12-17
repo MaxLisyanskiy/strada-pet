@@ -3,7 +3,7 @@ import MainPage from './pages/main-page';
 import ParagraphDetails from './pages/paragraph-details';
 import Profile from './pages/profile';
 import NotFoundPage from './pages/not-found-page';
-import { Layout } from './components/layout';
+import Layout from './components/layout';
 
 const App = () => {
   return (
