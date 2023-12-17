@@ -1,6 +1,6 @@
 import { Link, Outlet } from 'react-router-dom';
 
-export function Layout() {
+const Layout = () => {
   return (
     <>
       <header>
@@ -22,4 +22,6 @@ export function Layout() {
       <footer>2023</footer>
     </>
   );
-}
+};
+
+export default Layout;
