@@ -1,4 +1,4 @@
-import { Link, Outlet } from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom';
 
 export function Layout() {
   return (
@@ -15,9 +15,11 @@ export function Layout() {
         </Link>
       </header>
 
-      <Outlet />
+      <main>
+        <Outlet />
+      </main>
 
       <footer>2023</footer>
     </>
-  )
+  );
 }

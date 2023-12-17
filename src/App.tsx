@@ -1,10 +1,9 @@
-import { Routes, Route } from 'react-router'
-import { Link } from 'react-router-dom'
-import { MainPage } from './pages/main-page'
-import { ParagraphDetails } from './pages/paragraph-details'
-import { Profile } from './pages/profile'
-import { NotFoundPage } from './pages/not-found-page'
-import { Layout } from './components/layout'
+import { Routes, Route } from 'react-router';
+import MainPage from './pages/main-page';
+import ParagraphDetails from './pages/paragraph-details';
+import Profile from './pages/profile';
+import NotFoundPage from './pages/not-found-page';
+import { Layout } from './components/layout';
 
 const App = () => {
   return (
@@ -16,7 +15,7 @@ const App = () => {
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
-  )
-}
+  );
+};
 
-export default App
+export default App;
