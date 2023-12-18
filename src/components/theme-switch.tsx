@@ -1,7 +1,6 @@
 import { Switch } from 'antd';
-import useAppDispatch from '../hooks/use-app-dispatch';
-import { toggleTheme } from '../store/theme-slice';
-import useAppSelector from '../hooks/use-app-selector';
+import { useAppDispatch, useAppSelector } from '../store/store-hooks';
+import { toggleTheme } from '../store/reducers/theme-slice';
 
 const ThemeSwitch = () => {
   const dispatch = useAppDispatch();

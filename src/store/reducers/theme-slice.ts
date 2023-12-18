@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { NewsState } from '../interface/reducer-interface';
+import { NewsState } from '../../interface/reducer-interface';
 
 const initialState: NewsState = {
   userTheme: false,

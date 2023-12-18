@@ -1,5 +1,5 @@
 import { ConfigProvider, theme } from 'antd';
-import useAppSelector from './hooks/use-app-selector';
+import { useAppSelector } from './store/store-hooks';
 import { Routes, Route } from 'react-router';
 import MainPage from './pages/main-page';
 import ParagraphDetails from './pages/paragraph-details';
