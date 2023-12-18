@@ -6,6 +6,7 @@ import ParagraphDetails from './pages/paragraph-details';
 import Profile from './pages/profile';
 import NotFoundPage from './pages/not-found-page';
 import Layout from './components/layout';
+import SignIn from './pages/sign-in';
 
 const App = () => {
   const userTheme = useAppSelector((state) => state.theme.userTheme);
@@ -21,6 +22,7 @@ const App = () => {
           <Route index element={<MainPage />} />
           <Route path="/ParagraphDetails" element={<ParagraphDetails />} />
           <Route path="/Profile" element={<Profile />} />
+          <Route path="/SignIn" element={<SignIn />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>

@@ -13,6 +13,9 @@ const Layout = () => {
         <Link to="/Profile">
           <button>To Profile</button>
         </Link>
+        <Link to="/SignIn">
+          <button>Sign In</button>
+        </Link>
       </header>
 
       <main>
