@@ -1,22 +1,12 @@
-import { Input, Button } from 'antd';
-import { useSelector, useDispatch } from 'react-redux';
-import { toggleTheme } from '../redux/reducer';
+import { Input } from 'antd';
+import ThemeSwitch from '../components/theme-switch';
 
 const Profile = () => {
-  const dispatch = useDispatch();
-  const userTheme = useSelector((state) => state.posts.userTheme);
-
   return (
     <>
-      <Input placeholder="Введите текст"></Input>
-      <Button
-        type="primary"
-        onClick={() => {
-          dispatch(toggleTheme(!userTheme));
-        }}
-      >
-        Кнопка
-      </Button>
+      <Input placeholder="Введите текст" />
+
+      <ThemeSwitch></ThemeSwitch>
     </>
   );
 };

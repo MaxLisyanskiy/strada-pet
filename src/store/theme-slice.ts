@@ -1,15 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-interface NewsState {
-  userTheme: boolean;
-}
+import { NewsState } from '../interface/reducer-interface';
 
 const initialState: NewsState = {
   userTheme: false,
 };
 
-const reducer = createSlice({
-  name: 'news',
+const themeReducer = createSlice({
+  name: 'theme',
   initialState,
   reducers: {
     toggleTheme: (state, action: PayloadAction<boolean>) => {
@@ -18,6 +15,10 @@ const reducer = createSlice({
   },
 });
 
-export const { toggleTheme } = reducer.actions;
+export interface RootState {
+  theme: NewsState;
+}
 
-export default reducer.reducer;
+export const { toggleTheme } = themeReducer.actions;
+
+export default themeReducer.reducer;

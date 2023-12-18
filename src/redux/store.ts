@@ -1,10 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
-import reducer from './reducer';
+import themeReducer from '../store/theme-slice';
 
 const store = configureStore({
   reducer: {
-    posts: reducer,
+    theme: themeReducer,
   },
 });
 
+type AppDispatch = typeof store.dispatch;
+
+export type { AppDispatch };
 export default store;

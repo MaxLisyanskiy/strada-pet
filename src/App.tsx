@@ -1,5 +1,5 @@
 import { ConfigProvider, theme } from 'antd';
-import { useSelector } from 'react-redux';
+import useAppSelector from './hooks/use-app-selector';
 import { Routes, Route } from 'react-router';
 import MainPage from './pages/main-page';
 import ParagraphDetails from './pages/paragraph-details';
@@ -8,13 +8,12 @@ import NotFoundPage from './pages/not-found-page';
 import Layout from './components/layout';
 
 const App = () => {
-  const getThemeFromStore = useSelector((state) => state.posts.userTheme);
-  const userTheme = !getThemeFromStore ? '' : theme.darkAlgorithm;
+  const userTheme = useAppSelector((state) => state.theme.userTheme);
 
   return (
     <ConfigProvider
       theme={{
-        algorithm: userTheme,
+        algorithm: !userTheme ? '' : theme.darkAlgorithm,
       }}
     >
       <Routes>
