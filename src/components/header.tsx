@@ -23,7 +23,7 @@ const AppHeader = () => {
               fontSize: '26px',
             }}
           >
-            Logo
+            <Link to="/"> Logo</Link>
           </Typography>
         </Menu>
 
@@ -38,7 +38,7 @@ const AppHeader = () => {
         >
           <Menu.Item key="signup">
             <Button type="primary">
-              <Link to="/home">To Home Page</Link>
+              <Link to="/">To Home Page</Link>
             </Button>
           </Menu.Item>
           <Menu.Item key="signin">

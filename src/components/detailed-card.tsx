@@ -1,6 +1,7 @@
 import { Card, Avatar } from 'antd';
 import { HeartFilled } from '@ant-design/icons';
 const { Meta } = Card;
+import { Link } from 'react-router-dom';
 
 const DetailedCard = () => {
   return (
@@ -10,7 +11,9 @@ const DetailedCard = () => {
         margin: '30px 0 30px 0',
       }}
       actions={[
-        <div key="readmore">Read more...</div>,
+        <div key="readmore">
+          <Link to="/ParagraphDetails"> Read more...</Link>
+        </div>,
         <div>
           2295 <HeartFilled />
         </div>,
