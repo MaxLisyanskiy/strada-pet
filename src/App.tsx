@@ -1,11 +1,6 @@
 import { ConfigProvider, theme } from 'antd';
 import { useAppSelector } from './store/store-hooks';
-import { Routes, Route } from 'react-router';
-import MainPage from './pages/main-page';
-import ParagraphDetails from './pages/paragraph-details';
-import Profile from './pages/profile';
-import NotFoundPage from './pages/not-found-page';
-import Layout from './components/layout';
+import AppRoutes from './router/index';
 
 const App = () => {
   const userTheme = useAppSelector((state) => state.theme.userTheme);
@@ -16,14 +11,7 @@ const App = () => {
         algorithm: !userTheme ? '' : theme.darkAlgorithm,
       }}
     >
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<MainPage />} />
-          <Route path="/ParagraphDetails" element={<ParagraphDetails />} />
-          <Route path="/Profile" element={<Profile />} />
-          <Route path="*" element={<NotFoundPage />} />
-        </Route>
-      </Routes>
+      <AppRoutes />
     </ConfigProvider>
   );
 };

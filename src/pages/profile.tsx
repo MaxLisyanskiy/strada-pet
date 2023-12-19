@@ -5,8 +5,7 @@ const Profile = () => {
   return (
     <>
       <Input placeholder="Введите текст" />
-
-      <ThemeSwitch></ThemeSwitch>
+      <ThemeSwitch />
     </>
   );
 };
