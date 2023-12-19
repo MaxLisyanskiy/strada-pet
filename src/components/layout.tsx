@@ -10,7 +10,11 @@ const LayoutApp = () => {
     >
       <AppHeader />
 
-      <main style={{ flex: '1', display: 'flex', flexDirection: 'column' }}>
+      <main
+        style={{
+          flex: '1',
+        }}
+      >
         <Outlet />
       </main>
 
