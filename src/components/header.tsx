@@ -1,7 +1,7 @@
 import { Menu, Button, Typography, Layout } from 'antd';
-
 import { Link } from 'react-router-dom';
 import ThemeSwitch from './theme-switch';
+import { AppRoutesPath } from '../router/types';
 
 const AppHeader = () => {
   return (
@@ -23,7 +23,7 @@ const AppHeader = () => {
               fontSize: '26px',
             }}
           >
-            <Link to="/"> Logo</Link>
+            <Link to={AppRoutesPath.MAIN}> Logo</Link>
           </Typography>
         </Menu>
 
@@ -38,17 +38,17 @@ const AppHeader = () => {
         >
           <Menu.Item key="signup">
             <Button type="primary">
-              <Link to="/">To Home Page</Link>
+              <Link to={AppRoutesPath.MAIN}>To Home Page</Link>
             </Button>
           </Menu.Item>
           <Menu.Item key="signin">
             <Button>
-              <Link to="/sign-in">Sign In</Link>
+              <Link to={AppRoutesPath.SIGN_IN}>Sign In</Link>
             </Button>
           </Menu.Item>
           <Menu.Item key="sign-up">
             <Button>
-              <Link to="/sign-up">Sign Up</Link>
+              <Link to={AppRoutesPath.SIGN_UP}>Sign Up</Link>
             </Button>
           </Menu.Item>
           <Menu.Item key="themeSwitch">
