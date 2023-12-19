@@ -5,7 +5,7 @@ import ThemeSwitch from './theme-switch';
 
 const AppHeader = () => {
   return (
-    <Layout style={{}}>
+    <Layout>
       <div
         style={{
           display: 'flex',
