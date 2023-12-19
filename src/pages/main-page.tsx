@@ -20,8 +20,7 @@ const MainPage = () => {
           padding: '10px',
         }}
       >
-        <h1>Main Page</h1>
-
+        <DetailedCard />
         <DetailedCard />
 
         <AppPagination />

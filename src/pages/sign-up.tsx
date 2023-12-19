@@ -21,8 +21,6 @@ const SignUp = () => {
   return (
     <Layout
       style={{
-        display: 'flex',
-        flexDirection: 'column',
         alignItems: 'center',
       }}
     >
@@ -37,7 +35,11 @@ const SignUp = () => {
       </Layout>
       <Form
         name="basic"
-        style={{ display: 'flex', flexDirection: 'column', width: 500 }}
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          width: 500,
+        }}
         autoComplete="off"
         size="large"
         onFinish={handleSubmit(onSubmit)}
