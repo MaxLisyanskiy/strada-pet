@@ -7,13 +7,13 @@ const Layout = () => {
         <Link to="/">
           <button>To Main Page</button>
         </Link>
-        <Link to="/ParagraphDetails">
+        <Link to="/paragraph-details">
           <button>To Paragraph Details</button>
         </Link>
-        <Link to="/Profile">
+        <Link to="/profile">
           <button>To Profile</button>
         </Link>
-        <Link to="/SignIn">
+        <Link to="/sign-in">
           <button>Sign In</button>
         </Link>
       </header>

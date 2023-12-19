@@ -39,7 +39,7 @@ const SignIn = () => {
         <Title level={2}>Sign In</Title>
         <Link
           style={{ textDecoration: 'none', color: 'lightblue' }}
-          to="/SignUp"
+          to="/sign-up"
         >
           Need an account?
         </Link>
