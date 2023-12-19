@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { ChangeEvent } from 'react';
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, Typography } from 'antd';
+import { AppRoutesPath } from '../router/types';
 import { Link } from 'react-router-dom';
-import { Typography } from 'antd';
+
 const { Title } = Typography;
 
 const initialValues = {
@@ -39,7 +40,7 @@ const SignIn = () => {
         <Title level={2}>Sign In</Title>
         <Link
           style={{ textDecoration: 'none', color: 'lightblue' }}
-          to="/sign-up"
+          to={AppRoutesPath.SIGN_UP}
         >
           Need an account?
         </Link>

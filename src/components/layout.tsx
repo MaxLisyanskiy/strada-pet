@@ -1,19 +1,20 @@
 import { Link, Outlet } from 'react-router-dom';
+import { AppRoutesPath } from '../router/types';
 
 const Layout = () => {
   return (
     <>
       <header>
-        <Link to="/">
+        <Link to={AppRoutesPath.MAIN}>
           <button>To Main Page</button>
         </Link>
-        <Link to="/paragraph-details">
+        <Link to={AppRoutesPath.PARAGRAPH_DETAILS}>
           <button>To Paragraph Details</button>
         </Link>
-        <Link to="/profile">
+        <Link to={AppRoutesPath.PROFILE}>
           <button>To Profile</button>
         </Link>
-        <Link to="/sign-in">
+        <Link to={AppRoutesPath.SIGN_IN}>
           <button>Sign In</button>
         </Link>
       </header>
