@@ -1,5 +1,17 @@
+import { Layout, Typography } from 'antd';
+import AppHeader from '../components/header';
+
+const { Paragraph } = Typography;
+
 const ParagraphDetails = () => {
-  return <h1>Paragraph Details Page</h1>;
+  return (
+    <Layout>
+      <AppHeader />
+      <Typography>
+        <Paragraph>Paragraph Details Page</Paragraph>
+      </Typography>
+    </Layout>
+  );
 };
 
 export default ParagraphDetails;
