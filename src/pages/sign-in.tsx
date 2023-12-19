@@ -37,7 +37,7 @@ const SignIn = () => {
       }}
     >
       <div style={{ textAlign: 'center', marginBottom: '30px' }}>
-        <Title level={2}>Sign In</Title>
+        <Title level={3}>Sign In</Title>
         <Link
           style={{ textDecoration: 'none', color: 'lightblue' }}
           to={AppRoutesPath.SIGN_UP}

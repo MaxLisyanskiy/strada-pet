@@ -25,7 +25,7 @@ const SignUp = () => {
       }}
     >
       <Layout style={{ textAlign: 'center', marginBottom: '30px' }}>
-        <Title level={2}>Sign Up</Title>
+        <Title level={3}>Sign Up</Title>
         <Link
           style={{ textDecoration: 'none', color: 'lightblue' }}
           to="/SignIn"
