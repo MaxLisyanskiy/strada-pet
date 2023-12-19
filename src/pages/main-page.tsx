@@ -2,6 +2,8 @@ import { Layout } from 'antd';
 import { articlesAPI } from '../services/articles-api';
 import AppHeader from '../components/header';
 import SignUp from './sign-up';
+import AppPagination from '../components/pagination';
+import DetailedCard from '../components/detailed-card';
 
 const MainPage = () => {
   const { data, isLoading, isSuccess } = articlesAPI.useGetAllArticlesQuery({
@@ -12,11 +14,30 @@ const MainPage = () => {
   console.log(data, isLoading, isSuccess);
 
   return (
-    <Layout>
+    <>
       <AppHeader></AppHeader>
-      <h1>Main Page</h1>
-      <SignUp></SignUp>
-    </Layout>
+      <Layout
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          padding: '10px',
+        }}
+      >
+        <h1>Main Page</h1>
+        {/* <SignUp></SignUp> */}
+
+        <DetailedCard />
+        <DetailedCard />
+        <DetailedCard />
+        <DetailedCard />
+        <DetailedCard />
+        <DetailedCard />
+        <DetailedCard />
+        <DetailedCard />
+
+        <AppPagination />
+      </Layout>
+    </>
   );
 };
 

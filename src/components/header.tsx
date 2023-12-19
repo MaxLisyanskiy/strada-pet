@@ -1,4 +1,5 @@
 import { Menu, Button, Typography, Layout } from 'antd';
+
 import { Link } from 'react-router-dom';
 import ThemeSwitch from './theme-switch';
 
@@ -14,7 +15,7 @@ const AppHeader = () => {
         <Menu mode="horizontal">
           <Typography
             style={{
-              margin: '0 0 0 10px',
+              marginLeft: '15px',
               fontSize: '26px',
             }}
           >
@@ -37,12 +38,12 @@ const AppHeader = () => {
           </Menu.Item>
           <Menu.Item key="signin">
             <Button>
-              <Link to="/signin">Sign In</Link>
+              <Link to="/sign-in">Sign In</Link>
             </Button>
           </Menu.Item>
           <Menu.Item key="sinup">
             <Button>
-              <Link to="/signin">Sign Up</Link>
+              <Link to="/sign-in">Sign Up</Link>
             </Button>
           </Menu.Item>
           <Menu.Item key="themeSwitch">
