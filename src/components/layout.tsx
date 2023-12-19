@@ -1,9 +1,13 @@
 import { Link, Outlet } from 'react-router-dom';
+import { Layout } from 'antd';
 import { AppRoutesPath } from '../router/types';
+import Footer from './footer';
 
-const Layout = () => {
+const LayoutApp = () => {
   return (
-    <>
+    <Layout
+      style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}
+    >
       <header>
         <Link to={AppRoutesPath.MAIN}>
           <button>To Main Page</button>
@@ -18,14 +22,12 @@ const Layout = () => {
           <button>Sign In</button>
         </Link>
       </header>
-
-      <main>
+      <main style={{ flex: '1', display: 'flex', flexDirection: 'column' }}>
         <Outlet />
       </main>
-
-      <footer>2023</footer>
-    </>
+      <Footer />
+    </Layout>
   );
 };
 
-export default Layout;
+export default LayoutApp;

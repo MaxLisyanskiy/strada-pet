@@ -4,13 +4,13 @@ import MainPage from '../pages/main-page';
 import ParagraphDetails from '../pages/paragraph-details';
 import Profile from '../pages/profile';
 import NotFoundPage from '../pages/not-found-page';
-import Layout from '../components/layout';
+import LayoutApp from '../components/layout';
 import SignIn from '../pages/sign-in';
 
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path={AppRoutesPath.MAIN} element={<Layout />}>
+      <Route path={AppRoutesPath.MAIN} element={<LayoutApp />}>
         <Route index element={<MainPage />} />
         <Route
           path={AppRoutesPath.PARAGRAPH_DETAILS}
