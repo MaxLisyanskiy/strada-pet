@@ -1,4 +1,7 @@
+import { Layout } from 'antd';
 import { articlesAPI } from '../services/articles-api';
+import AppPagination from '../components/pagination';
+import DetailedCard from '../components/detailed-card';
 
 const MainPage = () => {
   const { data, isLoading, isSuccess } = articlesAPI.useGetAllArticlesQuery({
@@ -8,7 +11,23 @@ const MainPage = () => {
 
   console.log(data, isLoading, isSuccess);
 
-  return <h1>Main Page</h1>;
+  return (
+    <>
+      <Layout
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          padding: '10px',
+        }}
+      >
+        <h1>Main Page</h1>
+
+        <DetailedCard />
+
+        <AppPagination />
+      </Layout>
+    </>
+  );
 };
 
 export default MainPage;
