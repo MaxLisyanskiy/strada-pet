@@ -46,9 +46,9 @@ const AppHeader = () => {
               <Link to="/sign-in">Sign In</Link>
             </Button>
           </Menu.Item>
-          <Menu.Item key="sinup">
+          <Menu.Item key="sign-up">
             <Button>
-              <Link to="/sign-in">Sign Up</Link>
+              <Link to="/sign-up">Sign Up</Link>
             </Button>
           </Menu.Item>
           <Menu.Item key="themeSwitch">
