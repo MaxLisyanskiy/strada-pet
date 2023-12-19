@@ -1,19 +1,22 @@
-import { Link, Outlet } from 'react-router-dom';
-import { AppRoutesPath } from '../router/types';
+import { Outlet } from 'react-router-dom';
+import { Layout } from 'antd';
+import Footer from './footer';
 import AppHeader from './header';
 
-const Layout = () => {
+const LayoutApp = () => {
   return (
-    <>
+    <Layout
+      style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}
+    >
       <AppHeader />
 
-      <main>
+      <main style={{ flex: '1', display: 'flex', flexDirection: 'column' }}>
         <Outlet />
       </main>
 
-      <footer>2023</footer>
-    </>
+      <Footer />
+    </Layout>
   );
 };
 
-export default Layout;
+export default LayoutApp;

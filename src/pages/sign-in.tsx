@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { ChangeEvent } from 'react';
-import { Button, Form, Input, Typography } from 'antd';
+import { Button, Form, Input, Typography, Layout } from 'antd';
 import { AppRoutesPath } from '../router/types';
 import { Link } from 'react-router-dom';
 
@@ -29,7 +29,7 @@ const SignIn = () => {
   };
 
   return (
-    <div
+    <Layout
       style={{
         display: 'flex',
         flexDirection: 'column',
@@ -47,7 +47,12 @@ const SignIn = () => {
       </div>
       <Form
         name="basic"
-        style={{ display: 'flex', flexDirection: 'column', width: 500 }}
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          maxWidth: '500px',
+          width: '100%',
+        }}
         initialValues={{ remember: true }}
         autoComplete="off"
         size="large"
@@ -74,7 +79,7 @@ const SignIn = () => {
           </Button>
         </Form.Item>
       </Form>
-    </div>
+    </Layout>
   );
 };
 
