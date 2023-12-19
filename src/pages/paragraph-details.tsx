@@ -1,5 +1,15 @@
+import { Layout, Typography } from 'antd';
+
+const { Paragraph } = Typography;
+
 const ParagraphDetails = () => {
-  return <h1>Paragraph Details Page</h1>;
+  return (
+    <Layout>
+      <Typography>
+        <Paragraph>Paragraph Details Page</Paragraph>
+      </Typography>
+    </Layout>
+  );
 };
 
 export default ParagraphDetails;

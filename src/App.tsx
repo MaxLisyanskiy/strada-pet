@@ -1,6 +1,6 @@
 import { ConfigProvider, theme } from 'antd';
+import AppRoutes from './router';
 import { useAppSelector } from './store/store-hooks';
-import AppRoutes from './router/index';
 
 const App = () => {
   const userTheme = useAppSelector((state) => state.theme.userTheme);
@@ -8,7 +8,7 @@ const App = () => {
   return (
     <ConfigProvider
       theme={{
-        algorithm: !userTheme ? '' : theme.darkAlgorithm,
+        algorithm: !userTheme ? theme.defaultAlgorithm : theme.darkAlgorithm,
       }}
     >
       <AppRoutes />
