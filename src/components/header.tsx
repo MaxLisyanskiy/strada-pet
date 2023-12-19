@@ -5,14 +5,18 @@ import ThemeSwitch from './theme-switch';
 
 const AppHeader = () => {
   return (
-    <Layout>
+    <Layout style={{}}>
       <div
         style={{
           display: 'flex',
-          justifyContent: 'space-between',
         }}
       >
-        <Menu mode="horizontal">
+        <Menu
+          mode="horizontal"
+          style={{
+            padding: '20px',
+          }}
+        >
           <Typography
             style={{
               marginLeft: '15px',
@@ -28,6 +32,7 @@ const AppHeader = () => {
           style={{
             display: 'flex',
             justifyContent: 'right',
+            alignItems: 'center',
             flex: 1,
           }}
         >
