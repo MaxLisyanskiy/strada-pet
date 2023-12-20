@@ -4,18 +4,19 @@ import AppPagination from '../components/pagination';
 import DetailedCardList from '../components/detailed-card-list';
 
 const MainPage = () => {
-  const { data, isLoading, isSuccess } = articlesAPI.useGetAllArticlesQuery({
+  const { isLoading } = articlesAPI.useGetAllArticlesQuery({
     limit: 10,
     offset: 0,
   });
 
-  console.log(data, isLoading, isSuccess);
-  if (isLoading)
+  if (isLoading) {
     return (
       <h1 style={{ textAlign: 'center', color: '#474A51' }}>
         <Spin size="large" />
       </h1>
     );
+  }
+
   return (
     <>
       <Layout
@@ -25,7 +26,7 @@ const MainPage = () => {
           padding: '20px',
         }}
       >
-        {isSuccess && <DetailedCardList isSuccess={isSuccess} data={data} />}
+        <DetailedCardList />
         <AppPagination />
       </Layout>
     </>

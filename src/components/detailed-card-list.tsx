@@ -1,16 +1,15 @@
 import DetailedCard from './detailed-card';
-import { IArticlesResponse, IArticle } from '../types/articles-type';
+import { articlesAPI } from '../services/articles-api';
 
-interface DetailedCardListProps {
-  isSuccess: boolean;
-  data?: IArticlesResponse[];
-}
+const DetailedCardList = () => {
+  const { data, isSuccess } = articlesAPI.useGetAllArticlesQuery({
+    limit: 10,
+    offset: 0,
+  });
 
-const DetailedCardList = ({ isSuccess, data }: DetailedCardListProps) => {
-  if (!isSuccess) {
-    return <p>Что-то пошло не так при получении данных.</p>;
-  }
-  return data.articles.map((article: IArticle) => (
+  console.log(data, isSuccess);
+
+  return data?.articles.map((article) => (
     <DetailedCard
       author={article.author.username}
       date={article.createdAt}
