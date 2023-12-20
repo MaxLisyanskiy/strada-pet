@@ -1,7 +1,7 @@
 import { Layout, Spin } from 'antd';
 import { articlesAPI } from '../services/articles-api';
 import AppPagination from '../components/pagination';
-import DetailedCard from '../components/detailed-card';
+import DetailedCardList from '../components/detailed-card-list';
 
 const MainPage = () => {
   const { data, isLoading, isSuccess } = articlesAPI.useGetAllArticlesQuery({
@@ -25,18 +25,7 @@ const MainPage = () => {
           padding: '20px',
         }}
       >
-        {isSuccess &&
-          data.articles.map((article) => (
-            <DetailedCard
-              author={article.author.username}
-              date={article.createdAt}
-              title={article.title}
-              description={article.body}
-              likes={article.favoritesCount}
-              image={article.author.image}
-            />
-          ))}
-
+        {isSuccess && <DetailedCardList isSuccess={isSuccess} data={data} />}
         <AppPagination />
       </Layout>
     </>
