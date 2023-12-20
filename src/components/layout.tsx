@@ -1,5 +1,5 @@
-import { Outlet } from 'react-router-dom';
 import { Layout } from 'antd';
+import { Outlet } from 'react-router-dom';
 import Footer from './footer';
 import AppHeader from './header';
 
@@ -9,7 +9,6 @@ const LayoutApp = () => {
       style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}
     >
       <AppHeader />
-
       <main
         style={{
           flex: '1',
@@ -17,7 +16,6 @@ const LayoutApp = () => {
       >
         <Outlet />
       </main>
-
       <Footer />
     </Layout>
   );

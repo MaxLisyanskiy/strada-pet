@@ -23,7 +23,15 @@ const AppHeader = () => {
               fontSize: '26px',
             }}
           >
-            <Link to={AppRoutesPath.MAIN}> Logo</Link>
+            <Link to={AppRoutesPath.MAIN}>
+              <img
+                src="https://static.semrush.com/blog/uploads/media/17/48/17484f6f167c8596d4f7c97aa884172f/blog-post-templates.svg"
+                alt="Your Alt Text"
+                style={{
+                  width: '50px',
+                }}
+              />
+            </Link>
           </Typography>
         </Menu>
 
