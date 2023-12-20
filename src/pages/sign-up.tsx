@@ -23,20 +23,21 @@ const SignUp = () => {
     <Layout
       style={{
         alignItems: 'center',
+        textAlign: 'center',
       }}
     >
-      <Layout style={{ textAlign: 'center', marginBottom: '30px' }}>
-        <Title level={3}>Sign Up</Title>
-        <Link
-          style={{ textDecoration: 'none', color: 'lightblue' }}
-          to={AppRoutesPath.SIGN_IN}
-        >
-          Have an account?
-        </Link>
-      </Layout>
+      <Title level={3}>Sign Up</Title>
+      <Link
+        style={{ textDecoration: 'none', color: 'lightblue' }}
+        to={AppRoutesPath.SIGN_IN}
+      >
+        Have an account?
+      </Link>
+
       <Form
         name="basic"
         style={{
+          marginTop: '30px',
           display: 'flex',
           flexDirection: 'column',
           width: 500,

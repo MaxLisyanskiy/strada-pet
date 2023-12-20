@@ -32,7 +32,6 @@ const SignIn = () => {
     <Layout
       style={{
         display: 'flex',
-        flexDirection: 'column',
         alignItems: 'center',
       }}
     >
@@ -74,7 +73,7 @@ const SignIn = () => {
         </Form.Item>
 
         <Form.Item style={{ alignSelf: 'flex-end' }}>
-          <Button ghost type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit">
             Sign in
           </Button>
         </Form.Item>

@@ -1,4 +1,4 @@
-import { Menu, Button, Typography, Layout } from 'antd';
+import { Menu, Button, Typography } from 'antd';
 import { SettingOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import ThemeSwitch from './theme-switch';
@@ -6,7 +6,7 @@ import { AppRoutesPath } from '../router/types';
 
 const AppHeader = () => {
   return (
-    <Layout>
+    <div>
       <div
         style={{
           display: 'flex',
@@ -72,7 +72,7 @@ const AppHeader = () => {
           </Menu.Item>
         </Menu>
       </div>
-    </Layout>
+    </div>
   );
 };
 

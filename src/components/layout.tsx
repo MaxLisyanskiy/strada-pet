@@ -6,7 +6,11 @@ import AppHeader from './header';
 const LayoutApp = () => {
   return (
     <Layout
-      style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        minHeight: '100vh',
+      }}
     >
       <AppHeader />
       <main
