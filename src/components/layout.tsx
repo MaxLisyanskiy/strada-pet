@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import { Layout } from 'antd';
-import Footer from './footer';
+import Footer from './footer/footer';
 import AppHeader from './header';
 
 const LayoutApp = () => {
