@@ -27,7 +27,7 @@ const DetailedCard = () => {
         description="12-12-2023"
         style={{
           display: 'flex',
-          margin: '0 0 20px 0',
+          marginBottom: '20px',
           alignItems: 'center',
         }}
       />
