@@ -23,6 +23,7 @@ const SignUp = () => {
     <Layout
       style={{
         alignItems: 'center',
+        paddingTop: '50px',
       }}
     >
       <Layout style={{ textAlign: 'center', marginBottom: '30px' }}>

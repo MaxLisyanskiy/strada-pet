@@ -15,6 +15,7 @@ const SettingsPage = () => {
       style={{
         display: 'flex',
         alignItems: 'center',
+        paddingTop: '50px',
       }}
     >
       <Title level={3}>Your Settings</Title>
