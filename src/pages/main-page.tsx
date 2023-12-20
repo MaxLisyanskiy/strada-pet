@@ -2,6 +2,7 @@ import { Layout } from 'antd';
 import { articlesAPI } from '../services/articles-api';
 import AppPagination from '../components/pagination';
 import DetailedCard from '../components/detailed-card';
+import SettingsPage from './settings';
 
 const MainPage = () => {
   const { data, isLoading, isSuccess } = articlesAPI.useGetAllArticlesQuery({
@@ -17,13 +18,11 @@ const MainPage = () => {
         style={{
           display: 'flex',
           alignItems: 'center',
-
           padding: '10px',
         }}
       >
         <DetailedCard />
         <DetailedCard />
-
         <AppPagination />
       </Layout>
     </>
