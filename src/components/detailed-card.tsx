@@ -1,14 +1,14 @@
 import { Card, Avatar } from 'antd';
 import { HeartFilled } from '@ant-design/icons';
-const { Meta } = Card;
 import { Link } from 'react-router-dom';
+const { Meta } = Card;
 
 const DetailedCard = () => {
   return (
     <Card
       style={{
-        width: 700,
-        margin: '30px 0 30px 0',
+        width: '80%',
+        margin: '30px 0',
       }}
       actions={[
         <div key="readmore">
@@ -27,7 +27,7 @@ const DetailedCard = () => {
         description="12-12-2023"
         style={{
           display: 'flex',
-          margin: ' 0 0 20px 0 ',
+          marginBottom: '20px',
           alignItems: 'center',
         }}
       />

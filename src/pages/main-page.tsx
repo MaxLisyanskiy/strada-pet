@@ -17,6 +17,7 @@ const MainPage = () => {
         style={{
           display: 'flex',
           alignItems: 'center',
+
           padding: '10px',
         }}
       >
