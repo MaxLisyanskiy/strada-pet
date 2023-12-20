@@ -7,6 +7,7 @@ import NotFoundPage from '../pages/not-found-page';
 import LayoutApp from '../components/layout';
 import SignIn from '../pages/sign-in';
 import SignUp from '../pages/sign-up';
+import SettingsPage from '../pages/settings';
 
 const AppRoutes = () => {
   return (
@@ -20,6 +21,7 @@ const AppRoutes = () => {
         <Route path={AppRoutesPath.PROFILE} element={<Profile />} />
         <Route path={AppRoutesPath.SIGN_IN} element={<SignIn />} />
         <Route path={AppRoutesPath.SIGN_UP} element={<SignUp />} />
+        <Route path={AppRoutesPath.SETTINGS} element={<SettingsPage />} />
         <Route path={AppRoutesPath.NOT_FOUND_PAGE} element={<NotFoundPage />} />
       </Route>
     </Routes>

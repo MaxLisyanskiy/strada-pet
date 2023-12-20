@@ -4,5 +4,6 @@ export enum AppRoutesPath {
   PROFILE = '/profile',
   SIGN_IN = '/sign-in',
   SIGN_UP = '/sign-up',
+  SETTINGS = '/settings',
   NOT_FOUND_PAGE = '*',
 }

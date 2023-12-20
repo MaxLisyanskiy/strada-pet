@@ -17,13 +17,11 @@ const MainPage = () => {
         style={{
           display: 'flex',
           alignItems: 'center',
-
           padding: '10px',
         }}
       >
         <DetailedCard />
         <DetailedCard />
-
         <AppPagination />
       </Layout>
     </>

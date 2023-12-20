@@ -1,4 +1,5 @@
 import { Menu, Button, Typography, Layout } from 'antd';
+import { SettingOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import ThemeSwitch from './theme-switch';
 import { AppRoutesPath } from '../router/types';
@@ -57,6 +58,13 @@ const AppHeader = () => {
           <Menu.Item key="sign-up">
             <Button>
               <Link to={AppRoutesPath.SIGN_UP}>Sign Up</Link>
+            </Button>
+          </Menu.Item>
+          <Menu.Item key="settings">
+            <Button>
+              <Link to={AppRoutesPath.SETTINGS}>
+                Settings <SettingOutlined />
+              </Link>
             </Button>
           </Menu.Item>
           <Menu.Item key="themeSwitch">
