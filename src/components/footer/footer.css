@@ -1,0 +1,50 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  flex: 0 0 auto;
+}
+
+.footer__logo {
+  height: 55px;
+  width: 144px;
+}
+
+.footer__title {
+  font-size: 22px;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.footer__team {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.avatar {
+  border: 2px solid #ffffff;
+  height: 50px;
+  width: 50px;
+}
+
+@media (max-width: 600px) {
+  .footer {
+    flex-direction: column;
+  }
+  .footer__logo {
+    height: 60px;
+    padding-bottom: 5px;
+  }
+  .footer__title {
+    padding: 10px 0;
+    border-bottom: 1px solid #ffffff;
+    border-top: 1px solid #ffffff;
+  }
+  .avatar {
+    height: 40px;
+    width: 40px;
+  }
+}

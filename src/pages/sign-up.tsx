@@ -1,5 +1,6 @@
 import { Button, Form, Input, Layout, Typography } from 'antd';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { AppRoutesPath } from '../router/types';
 import { Link } from 'react-router-dom';
 
 const { Title } = Typography;
@@ -28,7 +29,7 @@ const SignUp = () => {
         <Title level={3}>Sign Up</Title>
         <Link
           style={{ textDecoration: 'none', color: 'lightblue' }}
-          to="/SignIn"
+          to={AppRoutesPath.SIGN_IN}
         >
           Have an account?
         </Link>
