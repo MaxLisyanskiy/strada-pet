@@ -17,7 +17,7 @@ const SettingsPage = () => {
         alignItems: 'center',
       }}
     >
-      <Title>Your Settings</Title>
+      <Title level={3}>Your Settings</Title>
       <Form
         size="large"
         style={{
