@@ -45,13 +45,13 @@ const AppHeader = () => {
           flex: 1,
         }}
       >
-        <Menu.Item key="signup">
+        <Menu.Item key="main">
           <Button type="primary">
             <Link to={AppRoutesPath.MAIN}>To Home Page</Link>
           </Button>
         </Menu.Item>
 
-        <Menu.Item key="signin">
+        <Menu.Item key="sign-in">
           <Button>
             <Link to={AppRoutesPath.SIGN_IN}>Sign In</Link>
           </Button>
