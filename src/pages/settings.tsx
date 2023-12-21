@@ -1,12 +1,23 @@
 import { Input, Button, Layout, Typography, Form } from 'antd';
 import { useForm, Controller } from 'react-hook-form';
+
 const { Title } = Typography;
 const { TextArea } = Input;
 
-const SettingsPage = () => {
-  const { control, handleSubmit } = useForm();
+interface SettingsFormData {
+  profilePicture: string;
+  username: string;
+  bio: string;
+  email: string;
+  newPassword: string;
+}
 
-  const onSubmit = () => {};
+const SettingsPage: React.FC = () => {
+  const { control, handleSubmit } = useForm<SettingsFormData>();
+
+  const onSubmit = (data: SettingsFormData) => {
+    console.log(data);
+  };
 
   return (
     <Layout

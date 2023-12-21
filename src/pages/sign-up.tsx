@@ -1,23 +1,30 @@
 import { Button, Form, Input, Layout, Typography } from 'antd';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { AppRoutesPath } from '../router/types';
 import { Link } from 'react-router-dom';
+import { useAppSelector } from '../store/store-hooks';
+import { useAppDispatch } from '../store/store-hooks';
+import { registerUser } from '../store/reducers/auth/auth-actions';
 
 const { Title } = Typography;
-const { Item } = Form;
 
-interface FormValues {
+interface SignUpFormValues {
   username: string;
   email: string;
   password: string;
 }
 
-const SignUp = () => {
-  const { register, handleSubmit } = useForm<FormValues>();
+const SignUp: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const { error } = useAppSelector((state) => state.auth);
+  const { control, handleSubmit } = useForm<SignUpFormValues>();
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<SignUpFormValues> = (data) => {
+    data.email = data.email.toLowerCase();
+    dispatch(registerUser(data));
   };
+
+  console.log(error);
 
   return (
     <Layout
@@ -46,30 +53,35 @@ const SignUp = () => {
         size="large"
         onFinish={handleSubmit(onSubmit)}
       >
-        <Item>
-          <Input
-            {...register('username', { required: 'Username is required' })}
-            placeholder="Username"
+        <Form.Item>
+          <Controller
+            name="username"
+            control={control}
+            render={({ field }) => <Input {...field} placeholder="Username" />}
           />
-        </Item>
-        <Item>
-          <Input
-            {...register('email', {
-              required: 'Email is required',
-            })}
-            placeholder="Email"
+        </Form.Item>
+        <Form.Item>
+          <Controller
+            name="email"
+            control={control}
+            render={({ field }) => <Input {...field} placeholder="Email" />}
           />
-        </Item>
-        <Item>
-          <Input.Password
-            {...register('password', { required: 'Password is required' })}
-            placeholder="Password"
+        </Form.Item>
+        <Form.Item>
+          <Controller
+            name="password"
+            control={control}
+            render={({ field }) => (
+              <Input.Password {...field} placeholder="Password" />
+            )}
           />
-        </Item>
+        </Form.Item>
 
-        <Item style={{ alignSelf: 'flex-end' }}>
-          <Button type="primary">Sign up</Button>
-        </Item>
+        <Form.Item style={{ alignSelf: 'flex-end' }}>
+          <Button type="primary" htmlType="submit">
+            Sign up
+          </Button>
+        </Form.Item>
       </Form>
     </Layout>
   );
