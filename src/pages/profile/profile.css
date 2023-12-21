@@ -1,0 +1,38 @@
+.profile__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  max-width: 800px;
+}
+.user__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.user__content-avatar {
+  height: 110px;
+  width: 110px;
+}
+.user__content-name {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+}
+.user__content-button {
+  align-self: flex-end;
+  justify-self: flex-end;
+}
+.articles__container {
+  margin: 0 auto;
+  padding: 15px;
+  max-width: 1200px;
+  width: 100%;
+}
+.button__box {
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}

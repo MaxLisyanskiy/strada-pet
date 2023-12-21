@@ -11,6 +11,8 @@ const MainPage = () => {
 
   console.log(data, isLoading, isSuccess);
 
+  if (isLoading) return <h3>...Loading</h3>;
+
   return (
     <>
       <Layout
@@ -18,6 +20,8 @@ const MainPage = () => {
           display: 'flex',
           alignItems: 'center',
           padding: '10px',
+          margin: '0 auto',
+          width: '75%',
         }}
       >
         <DetailedCard />
