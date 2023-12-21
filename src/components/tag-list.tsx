@@ -6,7 +6,7 @@ import AppTag from './tag';
 const { Title } = Typography;
 
 const TagList = () => {
-  const { data, isLoading, isSuccess } = tagsAPI.useGetAllTagsQuery();
+  const { data, isLoading } = tagsAPI.useGetAllTagsQuery();
 
   const userTheme = useAppSelector((state) => state.theme.userTheme);
   const backgroundColor = userTheme ? '#141414' : '#E6E6E6';

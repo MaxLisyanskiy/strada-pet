@@ -5,7 +5,7 @@ import DetailedCard from '../components/detailed-card';
 import TagList from '../components/tag-list';
 
 const MainPage = () => {
-  const { data, isLoading, isSuccess } = articlesAPI.useGetAllArticlesQuery({
+  const { isLoading } = articlesAPI.useGetAllArticlesQuery({
     limit: 10,
     offset: 0,
   });

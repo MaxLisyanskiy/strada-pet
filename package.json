@@ -12,7 +12,8 @@
     "format": "prettier . --check",
     "format:fix": "prettier . --write",
     "prepare": "husky install",
-    "deploy": "npm run build && npx gh-pages -d dist"
+    "deploy": "npm run build && npx gh-pages -d dist",
+    "ts": "tsc"
   },
   "dependencies": {
     "@ant-design/icons": "^5.2.6",

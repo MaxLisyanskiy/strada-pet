@@ -1,11 +1,19 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, SerializedError } from '@reduxjs/toolkit';
 import { registerUser } from './auth-actions';
 
-const initialState = {
+interface initialStateTypes {
+  loading: boolean;
+  userInfo: string;
+  userToken: string;
+  error: string | undefined | SerializedError;
+  success: boolean;
+}
+
+const initialState: initialStateTypes = {
   loading: false,
-  userInfo: {},
-  userToken: null,
-  error: null,
+  userInfo: '',
+  userToken: '',
+  error: '',
   success: false,
 };
 const authSlice = createSlice({
@@ -16,15 +24,16 @@ const authSlice = createSlice({
     builder
       .addCase(registerUser.pending, (state) => {
         state.loading = true;
-        state.error = null;
+        state.error = '';
       })
-      .addCase(registerUser.fulfilled, (state, { payload }) => {
+      .addCase(registerUser.fulfilled, (state, {}) => {
         state.loading = false;
-        state.success = true; // registration successful
+        state.success = true;
       })
       .addCase(registerUser.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload;
+        console.log(payload);
       });
   },
 });

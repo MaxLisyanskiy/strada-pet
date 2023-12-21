@@ -1,5 +1,5 @@
-import { createAsyncThunk, AsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createAsyncThunk, SerializedError } from '@reduxjs/toolkit';
+import axios, { AxiosError, AxiosResponse } from 'axios';
 import { API_URL } from '../../../shared/constants';
 
 interface RegisterUserArgs {
@@ -8,9 +8,14 @@ interface RegisterUserArgs {
   password: string;
 }
 
+interface RegisterUserResponse {}
+
 export const registerUser = createAsyncThunk<
+  AxiosResponse<RegisterUserResponse>,
   RegisterUserArgs,
-  { rejectValue: string }
+  {
+    rejectValue: SerializedError;
+  }
 >(
   'auth/register',
   async ({ username, email, password }, { rejectWithValue }) => {
@@ -32,11 +37,17 @@ export const registerUser = createAsyncThunk<
         },
         config
       );
-    } catch (error) {
-      if (error.response && error.response.data.message) {
-        return rejectWithValue(error.response.data.message);
+
+      return response;
+    } catch (err) {
+      const error = err as AxiosError;
+
+      if (axios.isAxiosError(error) && error.response) {
+        return rejectWithValue({
+          message: 'Email or username has already been taken',
+        });
       } else {
-        return rejectWithValue(error.message);
+        return rejectWithValue({ message: error.message });
       }
     }
   }

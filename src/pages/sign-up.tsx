@@ -8,25 +8,23 @@ import { registerUser } from '../store/reducers/auth/auth-actions';
 
 const { Title } = Typography;
 
-interface FormValues {
+interface SignUpFormValues {
   username: string;
   email: string;
   password: string;
 }
 
-const SignUp = () => {
+const SignUp: React.FC = () => {
   const dispatch = useAppDispatch();
+  const { error } = useAppSelector((state) => state.auth);
+  const { control, handleSubmit } = useForm<SignUpFormValues>();
 
-  const { loading, userInfo, error, success } = useAppSelector(
-    (state) => state.auth
-  );
-
-  const { control, handleSubmit } = useForm<FormValues>();
-
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
+  const onSubmit: SubmitHandler<SignUpFormValues> = (data) => {
     data.email = data.email.toLowerCase();
     dispatch(registerUser(data));
   };
+
+  console.log(error);
 
   return (
     <Layout
@@ -59,26 +57,14 @@ const SignUp = () => {
           <Controller
             name="username"
             control={control}
-            render={({ field }) => (
-              <Input
-                {...field}
-                placeholder="Username"
-                rules={{ required: 'Username is required' }}
-              />
-            )}
+            render={({ field }) => <Input {...field} placeholder="Username" />}
           />
         </Form.Item>
         <Form.Item>
           <Controller
             name="email"
             control={control}
-            render={({ field }) => (
-              <Input
-                {...field}
-                placeholder="Email"
-                rules={{ required: 'Email is required' }}
-              />
-            )}
+            render={({ field }) => <Input {...field} placeholder="Email" />}
           />
         </Form.Item>
         <Form.Item>
@@ -86,11 +72,7 @@ const SignUp = () => {
             name="password"
             control={control}
             render={({ field }) => (
-              <Input.Password
-                {...field}
-                placeholder="Password"
-                rules={{ required: 'Password is required' }}
-              />
+              <Input.Password {...field} placeholder="Password" />
             )}
           />
         </Form.Item>
