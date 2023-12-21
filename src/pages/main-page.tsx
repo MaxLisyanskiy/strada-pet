@@ -1,16 +1,22 @@
-import { Layout } from 'antd';
+import { Layout, Spin } from 'antd';
 import { articlesAPI } from '../services/articles-api';
 import AppPagination from '../components/pagination';
-import DetailedCard from '../components/detailed-card';
+import DetailedCardList from '../components/detailed-card-list';
 import TagList from '../components/tag-list';
 
 const MainPage = () => {
-  const { data, isLoading, isSuccess } = articlesAPI.useGetAllArticlesQuery({
+  const { isLoading } = articlesAPI.useGetAllArticlesQuery({
     limit: 10,
     offset: 0,
   });
 
-  if (isLoading) return <h3>...Loading</h3>;
+  if (isLoading) {
+    return (
+      <h1 style={{ textAlign: 'center', color: '#474A51' }}>
+        <Spin size="large" />
+      </h1>
+    );
+  }
 
   return (
     <>
@@ -32,7 +38,7 @@ const MainPage = () => {
           }}
         >
           <div>
-            <TagList></TagList>
+            <TagList/>
           </div>
           <div
             style={{
@@ -41,12 +47,7 @@ const MainPage = () => {
               flexDirection: 'column',
             }}
           >
-            <DetailedCard />
-            <DetailedCard />
-            <DetailedCard />
-            <DetailedCard />
-            <DetailedCard />
-
+            <DetailedCardList />
             <AppPagination />
           </div>
         </div>
