@@ -3,7 +3,7 @@ import { RadioChangeEvent } from 'antd';
 import { useAppSelector } from '../../store/store-hooks';
 import { SettingOutlined } from '@ant-design/icons';
 import { useState } from 'react';
-import DetailedCard from '../../components/detailed-card';
+// import DetailedCard from '../../components/detailed-card';
 import './profile.css';
 
 const Profile = () => {
@@ -57,10 +57,7 @@ const Profile = () => {
         {!userCards.length ? (
           <Typography>No articles are here ... yet.</Typography>
         ) : (
-          <>
-            <DetailedCard />
-            <DetailedCard />
-          </>
+          <>{/* <DetailedCard /> */}</>
         )}
       </div>
     </Layout>
