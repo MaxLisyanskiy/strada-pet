@@ -1,5 +1,5 @@
 import { Avatar, Layout, Space, Typography, Form, Input, Button } from 'antd';
-import FilterDetail from '../components/filter-detail';
+import Tag from '../components/tag';
 import { useAppSelector } from '../store/store-hooks';
 import { Link } from 'react-router-dom';
 import { AppRoutesPath } from '../router/types';
@@ -107,9 +107,7 @@ const ParagraphDetails = () => {
             padding: '0px 30px 0 30px',
           }}
         >
-          <FilterDetail filterName="rerum" />
-          <FilterDetail filterName="rerum" />
-          <FilterDetail filterName="rerum" />
+          <Tag />
         </Space>
       </Space>
       <Space

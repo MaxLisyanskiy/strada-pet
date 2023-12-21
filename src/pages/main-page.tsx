@@ -2,14 +2,13 @@ import { Layout } from 'antd';
 import { articlesAPI } from '../services/articles-api';
 import AppPagination from '../components/pagination';
 import DetailedCard from '../components/detailed-card';
+import TagList from '../components/tag-list';
 
 const MainPage = () => {
   const { data, isLoading, isSuccess } = articlesAPI.useGetAllArticlesQuery({
     limit: 10,
     offset: 0,
   });
-
-  console.log(data, isLoading, isSuccess);
 
   if (isLoading) return <h3>...Loading</h3>;
 
@@ -24,9 +23,33 @@ const MainPage = () => {
           width: '75%',
         }}
       >
-        <DetailedCard />
-        <DetailedCard />
-        <AppPagination />
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'row-reverse',
+            alignItems: 'flex-start',
+            justifyContent: 'space-between',
+          }}
+        >
+          <div>
+            <TagList></TagList>
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              flexDirection: 'column',
+            }}
+          >
+            <DetailedCard />
+            <DetailedCard />
+            <DetailedCard />
+            <DetailedCard />
+            <DetailedCard />
+
+            <AppPagination />
+          </div>
+        </div>
       </Layout>
     </>
   );
