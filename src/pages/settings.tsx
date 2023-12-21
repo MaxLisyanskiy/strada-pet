@@ -6,9 +6,7 @@ const { TextArea } = Input;
 const SettingsPage = () => {
   const { control, handleSubmit } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
-  };
+  const onSubmit = () => {};
 
   return (
     <Layout
