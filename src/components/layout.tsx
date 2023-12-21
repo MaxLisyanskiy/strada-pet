@@ -3,23 +3,23 @@ import { Outlet } from 'react-router-dom';
 import Footer from './footer/footer';
 import AppHeader from './header';
 
+const { Content } = Layout;
+
 const LayoutApp = () => {
   return (
     <Layout
       style={{
-        display: 'flex',
-        flexDirection: 'column',
         minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column'
       }}
     >
       <AppHeader />
-      <main
-        style={{
-          flex: '1',
-        }}
-      >
+
+      <Content style={{ flex: 1 }}>
         <Outlet />
-      </main>
+      </Content>
+
       <Footer />
     </Layout>
   );

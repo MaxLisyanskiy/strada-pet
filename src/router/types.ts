@@ -5,5 +5,6 @@ export enum AppRoutesPath {
   SIGN_IN = '/sign-in',
   SIGN_UP = '/sign-up',
   SETTINGS = '/settings',
+  NEW_POST = '/new-post',
   NOT_FOUND_PAGE = '*',
 }

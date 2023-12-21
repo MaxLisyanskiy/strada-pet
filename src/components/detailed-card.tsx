@@ -8,7 +8,6 @@ const DetailedCard = () => {
   return (
     <Card
       style={{
-        width: '80%',
         margin: '30px 0',
       }}
       actions={[

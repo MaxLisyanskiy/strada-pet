@@ -33,6 +33,7 @@ const SignIn = () => {
       style={{
         display: 'flex',
         alignItems: 'center',
+        paddingTop: '50px',
       }}
     >
       <div style={{ textAlign: 'center', marginBottom: '30px' }}>

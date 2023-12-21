@@ -23,7 +23,7 @@ const SignUp = () => {
     <Layout
       style={{
         alignItems: 'center',
-        textAlign: 'center',
+        paddingTop: '50px',
       }}
     >
       <Title level={3}>Sign Up</Title>
