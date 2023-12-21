@@ -13,13 +13,11 @@ const TagList = () => {
   return (
     <Layout
       style={{
-        display: 'flex',
-        flexDirection: 'column',
         backgroundColor: backgroundColor,
         borderRadius: '10px',
-        padding: '10px',
-        margin: '30px 0px',
-        width: '200px',
+        padding: '5px',
+        height: '100%',
+        width: '100%',
       }}
     >
       <Title level={5}>Tag List</Title>

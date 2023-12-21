@@ -3,8 +3,8 @@ import { RadioChangeEvent } from 'antd';
 import { useAppSelector } from '../../store/store-hooks';
 import { SettingOutlined } from '@ant-design/icons';
 import { useState } from 'react';
-import DetailedCard from '../../components/detailed-card';
 import './profile.css';
+import DetailedCardList from '../../components/detailed-card-list';
 
 const Profile = () => {
   const userTheme = useAppSelector((state) => state.theme.userTheme);
@@ -58,8 +58,7 @@ const Profile = () => {
           <Typography>No articles are here ... yet.</Typography>
         ) : (
           <>
-            <DetailedCard />
-            <DetailedCard />
+            <DetailedCardList />
           </>
         )}
       </div>
