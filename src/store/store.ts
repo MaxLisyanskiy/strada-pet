@@ -1,17 +1,18 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import { articlesAPI } from '../services/articles-api';
+import { articlesAPI, tagsAPI } from '../services/articles-api';
 import themeReducer from './reducers/theme-slice';
 
 const rootReducer = combineReducers({
   theme: themeReducer,
   [articlesAPI.reducerPath]: articlesAPI.reducer,
+  [tagsAPI.reducerPath]: tagsAPI.reducer,
 });
 
 export const setupStore = () => {
   return configureStore({
     reducer: rootReducer,
     middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(articlesAPI.middleware),
+      getDefaultMiddleware().concat(articlesAPI.middleware, tagsAPI.middleware),
   });
 };
 

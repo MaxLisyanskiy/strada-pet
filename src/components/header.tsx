@@ -70,7 +70,7 @@ const AppHeader = () => {
             </Link>
           </Button>
         </Menu.Item>
-        
+
         <Menu.Item key="settings">
           <Button>
             <Link to={AppRoutesPath.SETTINGS}>
