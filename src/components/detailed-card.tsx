@@ -1,6 +1,7 @@
 import { Card, Avatar } from 'antd';
 import { HeartFilled } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
+import { AppRoutesPath } from '../router/types';
 const { Meta } = Card;
 
 interface DetailedCardProps {
@@ -25,12 +26,11 @@ const DetailedCard = ({
   return (
     <Card
       style={{
-        width: '80%',
         margin: '30px 0',
       }}
       actions={[
         <div key="readmore">
-          <Link to="/ParagraphDetails"> Read more...</Link>
+          <Link to={AppRoutesPath.PARAGRAPH_DETAILS}> Read more...</Link>
         </div>,
         <div>
           {likes} <HeartFilled />
