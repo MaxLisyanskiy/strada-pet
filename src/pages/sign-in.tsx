@@ -1,23 +1,40 @@
-import { useState } from 'react';
-import { ChangeEvent } from 'react';
 import { Button, Form, Input, Typography, Layout } from 'antd';
+import { useEffect, useState } from 'react';
+import { ChangeEvent } from 'react';
 import { AppRoutesPath } from '../router/types';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../store/store-hooks';
+import { loginUser } from '../store/reducers/auth/auth-actions';
+import toast from 'react-hot-toast';
 
 const { Title } = Typography;
 
 const initialValues = {
-  username: '',
+  email: '',
   password: '',
 };
 
 const SignIn = () => {
   const [credentials, setCredentials] = useState(initialValues);
+  const isSuccess = useAppSelector((state) => state.auth.success);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
-  const usernameChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const onSubmit = () => {
+    credentials.email = credentials.email.toLowerCase();
+    dispatch(loginUser(credentials));
+    toast.loading('Loading...');
+    setTimeout(() => {
+      if (!isSuccess) {
+        toast.dismiss();
+      }
+    }, 3500);
+  };
+
+  const emailChange = (e: ChangeEvent<HTMLInputElement>) => {
     setCredentials({
       ...credentials,
-      username: e.target.value,
+      email: e.target.value,
     });
   };
 
@@ -28,12 +45,20 @@ const SignIn = () => {
     });
   };
 
+  useEffect(() => {
+    if (isSuccess) {
+      toast.dismiss();
+      toast.success('you have successfully logged in');
+      navigate(AppRoutesPath.MAIN);
+    }
+  }, [isSuccess]);
+
   return (
     <Layout
       style={{
         display: 'flex',
         alignItems: 'center',
-        paddingTop: '50px',
+        padding: '50px 10px 0 10px',
       }}
     >
       <div style={{ textAlign: 'center', marginBottom: '30px' }}>
@@ -53,14 +78,15 @@ const SignIn = () => {
           maxWidth: '500px',
           width: '100%',
         }}
+        onSubmitCapture={onSubmit}
         initialValues={{ remember: true }}
         autoComplete="off"
         size="large"
       >
         <Form.Item>
           <Input
-            onChange={usernameChange}
-            value={credentials.username}
+            onChange={emailChange}
+            value={credentials.email}
             placeholder="Email"
           />
         </Form.Item>
