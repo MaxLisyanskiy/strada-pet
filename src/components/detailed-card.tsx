@@ -14,14 +14,8 @@ interface DetailedCardProps {
   image: string;
 }
 
-const DetailedCard = ({
-  likes,
-  author,
-  date,
-  title,
-  description,
-  image,
-}: DetailedCardProps) => {
+const DetailedCard = (props: DetailedCardProps) => {
+  const { likes, author, date, title, description, image } = props;
   const formattedDate = new Date(date).toLocaleString();
   const peaceOfDescription = description?.slice(0, 420) + '...';
 
