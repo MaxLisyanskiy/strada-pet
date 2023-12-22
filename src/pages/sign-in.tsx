@@ -1,16 +1,22 @@
 import { Button, Form, Input, Typography, Layout } from 'antd';
 import { HomeOutlined, UserOutlined } from '@ant-design/icons';
 import toast from 'react-hot-toast';
-import { useState, useEffect } from 'react';
-import { ChangeEvent } from 'react';
+import { useState, useEffect, ChangeEvent } from 'react';
+import Cookies from 'js-cookie';
 import { AppRoutesPath } from '../router/types';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../store/store-hooks';
 import { setCurrentPath } from '../store/reducers/breadcrumbs/breadcrumb-slice';
 import { loginUser } from '../store/reducers/auth/auth-actions';
 import updateMetaData from '../utils/create-meta';
+import * as Yup from 'yup';
 
 const { Title } = Typography;
+
+const validationSchema = Yup.object().shape({
+  email: Yup.string().email('Invalid email').required('Email is required'),
+  password: Yup.string().required('Password is required'),
+});
 
 const initialValues = {
   email: '',
@@ -19,19 +25,22 @@ const initialValues = {
 
 const SignIn = () => {
   const [credentials, setCredentials] = useState(initialValues);
+  const userInfo = useAppSelector((state) => state.auth.userInfo);
   const isSuccess = useAppSelector((state) => state.auth.success);
+  const isError = useAppSelector((state) => state.auth.error);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const onSubmit = () => {
-    credentials.email = credentials.email.toLowerCase();
-    dispatch(loginUser(credentials));
-    toast.loading('Loading...');
-    setTimeout(() => {
-      if (!isSuccess) {
-        toast.dismiss();
-      }
-    }, 3500);
+  const onSubmit = async () => {
+    try {
+      await validationSchema.validate(credentials, { abortEarly: false });
+      credentials.email = credentials.email.toLowerCase();
+      dispatch(loginUser(credentials));
+      toast.loading('Loading...');
+    } catch (error) {
+      toast.dismiss();
+      toast.error('Invalid email or password');
+    }
   };
 
   updateMetaData({
@@ -79,10 +88,15 @@ const SignIn = () => {
   useEffect(() => {
     if (isSuccess) {
       toast.dismiss();
-      toast.success('you have successfully logged in');
+      toast.success('You have successfully logged in');
+      Cookies.set('userInfo', JSON.stringify(userInfo), { expires: 10 });
       navigate(AppRoutesPath.MAIN);
     }
-  }, [isSuccess]);
+    if (isError) {
+      toast.dismiss();
+      toast.error('Email or password is not found');
+    }
+  }, [isSuccess, isError]);
 
   return (
     <Layout
@@ -93,12 +107,12 @@ const SignIn = () => {
       }}
     >
       <div style={{ textAlign: 'center', marginBottom: '30px' }}>
-        <Title level={3}>Sign In</Title>
+        <Title level={3}>Sign in</Title>
         <Link
           style={{ textDecoration: 'none', color: 'lightblue' }}
           to={AppRoutesPath.SIGN_UP}
         >
-          Need an account?
+          Need an accout?
         </Link>
       </div>
       <Form
@@ -109,12 +123,23 @@ const SignIn = () => {
           maxWidth: '500px',
           width: '100%',
         }}
-        onSubmitCapture={onSubmit}
+        onFinish={onSubmit}
         initialValues={{ remember: true }}
         autoComplete="off"
         size="large"
       >
-        <Form.Item>
+        <Form.Item
+          name="email"
+          rules={[{ required: true, message: 'Enter your email' }]}
+          hasFeedback
+          validateStatus={
+            credentials.email && validationSchema.fields.email
+              ? validationSchema.fields.email.isValidSync(credentials.email)
+                ? 'success'
+                : 'error'
+              : ''
+          }
+        >
           <Input
             onChange={emailChange}
             value={credentials.email}
@@ -122,7 +147,20 @@ const SignIn = () => {
           />
         </Form.Item>
 
-        <Form.Item>
+        <Form.Item
+          name="password"
+          rules={[{ required: true, message: 'Enter your password' }]}
+          hasFeedback
+          validateStatus={
+            credentials.password && validationSchema.fields.password
+              ? validationSchema.fields.password.isValidSync(
+                  credentials.password
+                )
+                ? 'success'
+                : 'error'
+              : ''
+          }
+        >
           <Input.Password
             onChange={passwordChange}
             value={credentials.password}
@@ -132,7 +170,7 @@ const SignIn = () => {
 
         <Form.Item style={{ alignSelf: 'flex-end' }}>
           <Button type="primary" htmlType="submit">
-            Sign in
+            Sign In
           </Button>
         </Form.Item>
       </Form>
