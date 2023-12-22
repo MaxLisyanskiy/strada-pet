@@ -7,7 +7,7 @@ import { AppRoutesPath } from '../router/types';
 
 const AppHeader = () => {
   return (
-    <header style={{ display: 'flex' }}>
+    <header style={{ display: 'flex', padding: '0' }}>
       <Link to={AppRoutesPath.MAIN}>
         <img
           src="https://static.semrush.com/blog/uploads/media/17/48/17484f6f167c8596d4f7c97aa884172f/blog-post-templates.svg"
