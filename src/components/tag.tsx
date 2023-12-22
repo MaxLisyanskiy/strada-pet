@@ -9,15 +9,12 @@ interface AppTagProps {
 }
 
 const AppTag: React.FC<AppTagProps> = ({ tagsData = {} }) => {
-  console.log(tagsData);
-
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
   const handleChange = (tag: string, checked: boolean) => {
     const nextSelectedTags = checked
       ? [...selectedTags, tag]
       : selectedTags.filter((t) => t !== tag);
-    console.log('You are interested in: ', nextSelectedTags);
     setSelectedTags(nextSelectedTags);
   };
 

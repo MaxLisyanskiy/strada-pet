@@ -13,17 +13,21 @@ const TagList = () => {
   return (
     <Layout
       style={{
-        display: 'flex',
-        flexDirection: 'column',
         backgroundColor: backgroundColor,
         borderRadius: '10px',
-        padding: '10px',
-        margin: '30px 0px',
-        width: '200px',
+        padding: '5px',
+        maxWidth: '720px',
+        width: '100%',
+        margin: '0 auto',
+        marginBottom: '30px',
       }}
     >
-      <Title level={5}>Tag List</Title>
-      <Skeleton active loading={isLoading} />
+      <Title style={{ textAlign: 'center' }} level={5}>
+        Tag List
+      </Title>
+
+      {isLoading && <Skeleton.Input active size="small" block />}
+
       <AppTag tagsData={data} />
     </Layout>
   );

@@ -2,6 +2,7 @@ import { Card, Avatar } from 'antd';
 import { HeartFilled } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import { AppRoutesPath } from '../router/types';
+
 const { Meta } = Card;
 
 interface DetailedCardProps {
@@ -22,11 +23,12 @@ const DetailedCard = ({
   image,
 }: DetailedCardProps) => {
   const formattedDate = new Date(date).toLocaleString();
-  const peaceOfDescription = description.slice(0, 420) + '...';
+  const peaceOfDescription = description?.slice(0, 420) + '...';
+
   return (
     <Card
       style={{
-        margin: '30px 0',
+        marginBottom: '20px',
       }}
       actions={[
         <div key="readmore">
@@ -43,7 +45,6 @@ const DetailedCard = ({
         description={formattedDate}
         style={{
           display: 'flex',
-          marginBottom: '20px',
           alignItems: 'center',
         }}
       />

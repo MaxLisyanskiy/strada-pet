@@ -14,7 +14,6 @@ const NewPost = () => {
 
   const onSubmit = () => {
     setPost(initialValues);
-    console.log(post);
   };
 
   function handleChangeTitle(e: ChangeEvent<HTMLInputElement>) {

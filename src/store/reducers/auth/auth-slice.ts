@@ -26,14 +26,13 @@ const authSlice = createSlice({
         state.loading = true;
         state.error = '';
       })
-      .addCase(registerUser.fulfilled, (state, {}) => {
+      .addCase(registerUser.fulfilled, (state) => {
         state.loading = false;
         state.success = true;
       })
       .addCase(registerUser.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload;
-        console.log(payload);
       });
   },
 });
