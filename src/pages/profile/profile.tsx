@@ -1,10 +1,15 @@
 import { Layout, Avatar, Typography, Button, Radio } from 'antd';
 import { RadioChangeEvent } from 'antd';
-import { SettingOutlined } from '@ant-design/icons';
+import { SettingOutlined, UserOutlined, HomeOutlined } from '@ant-design/icons';
 import { useAppSelector } from '../../store/store-hooks';
 import { useState } from 'react';
 import DetailedCardList from '../../components/detailed-card-list';
 import './profile.css';
+import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { useAppDispatch } from '../../store/store-hooks';
+import { setCurrentPath } from '../../store/reducers/breadcrumbs/breadcrumb-slice';
+import { AppRoutesPath } from '../../router/types';
 
 const Profile = () => {
   const userTheme = useAppSelector((state) => state?.theme.userTheme);
@@ -15,6 +20,31 @@ const Profile = () => {
   function handleRadioChange(e: RadioChangeEvent) {
     setSelectedRadio(e.target.value);
   }
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(
+      setCurrentPath([
+        {
+          title: (
+            <>
+              <HomeOutlined />
+              <Link to={AppRoutesPath.MAIN}>Home</Link>
+            </>
+          ),
+        },
+        {
+          title: (
+            <>
+              <UserOutlined />
+              <Link to={AppRoutesPath.PROFILE}>Profile</Link>
+            </>
+          ),
+        },
+      ])
+    );
+  }, []);
 
   return (
     <Layout>

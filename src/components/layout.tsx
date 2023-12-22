@@ -2,6 +2,7 @@ import { Layout } from 'antd';
 import { Outlet } from 'react-router-dom';
 import Footer from './footer/footer';
 import AppHeader from './header';
+import BreadcrumbItem from './breadcrumb';
 
 const { Content } = Layout;
 
@@ -16,6 +17,7 @@ const LayoutApp = () => {
     >
       <AppHeader />
 
+      <BreadcrumbItem />
       <Content style={{ flex: 1 }}>
         <Outlet />
       </Content>
