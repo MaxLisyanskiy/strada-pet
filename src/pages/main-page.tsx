@@ -1,9 +1,9 @@
 import { Layout } from 'antd';
+import { useState } from 'react';
 import { articlesAPI } from '../services/articles-api';
 import AppPagination from '../components/pagination';
 import DetailedCardList from '../components/detailed-card-list';
 import TagList from '../components/tag-list';
-import { useState } from 'react';
 import { CURRENT_PAGE, CURRENT_PAGE_SIZE } from '../shared/constants';
 import { useAppDispatch } from '../store/store-hooks';
 import { setCurrentPath } from '../store/reducers/breadcrumbs/breadcrumb-slice';
@@ -17,7 +17,7 @@ const MainPage = () => {
   const dispatch = useAppDispatch();
   updateMetaData({ title: 'Home | News App', description: 'Main page' });
 
-  const { data } = articlesAPI.useGetAllArticlesQuery({
+  const { data, isLoading } = articlesAPI.useGetAllArticlesQuery({
     limit: currentPageSize,
     offset: (currentPage - 1) * currentPageSize,
   });
@@ -33,7 +33,7 @@ const MainPage = () => {
       }}
     >
       <TagList />
-      <DetailedCardList />
+      <DetailedCardList data={data} isLoading={isLoading} />
       <AppPagination
         page={currentPage}
         pageSize={currentPageSize}

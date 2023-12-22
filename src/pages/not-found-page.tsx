@@ -5,6 +5,7 @@ import { AppRoutesPath } from '../router/types';
 
 const NotFoundPage = () => {
   updateMetaData({ title: 'ERROR | News App', description: 'Error page' });
+  
   return (
     <Result
       style={{

@@ -1,18 +1,20 @@
 import { Skeleton } from 'antd';
 import { uid } from 'uid';
 import DetailedCard from './detailed-card';
-import { articlesAPI } from '../services/articles-api';
+import { IArticlesResponse } from '../types/articles-type';
 
-const DetailedCardList = () => {
-  const { data, isLoading } = articlesAPI.useGetAllArticlesQuery({
-    limit: 10,
-    offset: 0,
-  });
+interface DetailedCardListProps {
+  data: IArticlesResponse | undefined;
+  isLoading: boolean;
+}
+
+const DetailedCardList = (props: DetailedCardListProps) => {
+  const { data, isLoading } = props;
 
   const GenerateSkeleton = () => {
     const array = [];
     for (let i = 0; i < 10; i++) {
-      array.push(<Skeleton key={uid()} />);
+      array.push(<Skeleton active key={uid()} />);
     }
     return array;
   };

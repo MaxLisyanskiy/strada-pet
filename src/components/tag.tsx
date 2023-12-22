@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Space, Tag } from 'antd';
+import Cookies from 'js-cookie';
 const { CheckableTag } = Tag;
 
 interface AppTagProps {
@@ -25,6 +26,9 @@ const AppTag: React.FC<AppTagProps> = ({ tagsData = {} }) => {
           key={tag}
           checked={selectedTags.includes(tag)}
           onChange={(checked) => handleChange(tag, checked)}
+          onClick={() => {
+            console.log(Cookies.get('userInfo'));
+          }}
         >
           {tag}
         </CheckableTag>
