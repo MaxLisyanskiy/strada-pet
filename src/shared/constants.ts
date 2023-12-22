@@ -5,3 +5,6 @@ export const GITHUB_USERNAME = [
   'AipovAlexander',
   'freddypopa',
 ];
+
+export const CURRENT_PAGE = 1;
+export const CURRENT_PAGE_SIZE = 10;

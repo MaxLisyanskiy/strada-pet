@@ -46,6 +46,7 @@ const DetailedCard = ({
         style={{
           display: 'flex',
           alignItems: 'center',
+          marginBottom: '10px',
         }}
       />
       <Meta title={title} description={peaceOfDescription} />
