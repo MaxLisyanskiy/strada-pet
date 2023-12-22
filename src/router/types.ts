@@ -1,10 +1,10 @@
 export enum AppRoutesPath {
-  MAIN = '/',
-  PARAGRAPH_DETAILS = '/paragraph-details',
-  PROFILE = '/profile',
-  SIGN_IN = '/sign-in',
-  SIGN_UP = '/sign-up',
-  SETTINGS = '/settings',
-  NEW_POST = '/new-post',
+  MAIN = '/strada-pet/',
+  PARAGRAPH_DETAILS = '/strada-pet/paragraph-details',
+  PROFILE = '/strada-pet/profile',
+  SIGN_IN = '/strada-pet/sign-in',
+  SIGN_UP = '/strada-pet/sign-up',
+  SETTINGS = '/strada-pet/settings',
+  NEW_POST = '/strada-pet/new-post',
   NOT_FOUND_PAGE = '*',
 }

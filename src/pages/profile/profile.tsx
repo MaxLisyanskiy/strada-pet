@@ -1,13 +1,15 @@
 import { Layout, Avatar, Typography, Button, Radio } from 'antd';
 import { RadioChangeEvent } from 'antd';
-import { useAppSelector } from '../../store/store-hooks';
 import { SettingOutlined } from '@ant-design/icons';
+import { useAppSelector } from '../../store/store-hooks';
 import { useState } from 'react';
+import DetailedCard from '../../components/detailed-card';
+
 import './profile.css';
 import DetailedCardList from '../../components/detailed-card-list';
 
 const Profile = () => {
-  const userTheme = useAppSelector((state) => state.theme.userTheme);
+  const userTheme = useAppSelector((state) => state?.theme.userTheme);
   const [selectedRadio, setSelectedRadio] = useState('my');
   const backgroundColor = userTheme ? '#141414' : '#474A51';
   const userCards = selectedRadio === 'my' ? ['123'] : [];
@@ -57,9 +59,7 @@ const Profile = () => {
         {!userCards.length ? (
           <Typography>No articles are here ... yet.</Typography>
         ) : (
-          <>
             <DetailedCardList />
-          </>
         )}
       </div>
     </Layout>
