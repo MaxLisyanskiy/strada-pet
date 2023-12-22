@@ -1,15 +1,16 @@
 import { Button, Form, Input, Typography, Layout } from 'antd';
 import { HomeOutlined, UserOutlined } from '@ant-design/icons';
-import toast from 'react-hot-toast';
 import { useState, useEffect, ChangeEvent } from 'react';
-import Cookies from 'js-cookie';
 import { AppRoutesPath } from '../router/types';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../store/store-hooks';
 import { setCurrentPath } from '../store/reducers/breadcrumbs/breadcrumb-slice';
 import { loginUser } from '../store/reducers/auth/auth-actions';
 import updateMetaData from '../utils/create-meta';
+import Cookies from 'js-cookie';
+import toast from 'react-hot-toast';
 import * as Yup from 'yup';
+import { yupValidator } from '../utils/yup-validator';
 
 const { Title } = Typography;
 
@@ -69,7 +70,7 @@ const SignIn = () => {
         },
       ])
     );
-  }, []);
+  }, []); // eslint-disable-line
 
   const emailChange = (e: ChangeEvent<HTMLInputElement>) => {
     setCredentials({
@@ -96,7 +97,11 @@ const SignIn = () => {
       toast.dismiss();
       toast.error('Email or password is not found');
     }
-  }, [isSuccess, isError]);
+  }, [isSuccess, isError]); // eslint-disable-line
+
+  const [form] = Form.useForm();
+
+  const yupSync = yupValidator(validationSchema, form.getFieldsValue);
 
   return (
     <Layout
@@ -116,6 +121,7 @@ const SignIn = () => {
         </Link>
       </div>
       <Form
+        form={form}
         name="basic"
         style={{
           display: 'flex',
@@ -128,18 +134,7 @@ const SignIn = () => {
         autoComplete="off"
         size="large"
       >
-        <Form.Item
-          name="email"
-          rules={[{ required: true, message: 'Enter your email' }]}
-          hasFeedback
-          validateStatus={
-            credentials.email && validationSchema.fields.email
-              ? validationSchema.fields.email.isValidSync(credentials.email)
-                ? 'success'
-                : 'error'
-              : ''
-          }
-        >
+        <Form.Item name="email" rules={[yupSync]} hasFeedback>
           <Input
             onChange={emailChange}
             value={credentials.email}
@@ -147,20 +142,7 @@ const SignIn = () => {
           />
         </Form.Item>
 
-        <Form.Item
-          name="password"
-          rules={[{ required: true, message: 'Enter your password' }]}
-          hasFeedback
-          validateStatus={
-            credentials.password && validationSchema.fields.password
-              ? validationSchema.fields.password.isValidSync(
-                  credentials.password
-                )
-                ? 'success'
-                : 'error'
-              : ''
-          }
-        >
+        <Form.Item name="password" rules={[yupSync]} hasFeedback>
           <Input.Password
             onChange={passwordChange}
             value={credentials.password}
