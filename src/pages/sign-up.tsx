@@ -8,6 +8,7 @@ import { useAppDispatch } from '../store/store-hooks';
 import { useEffect } from 'react';
 import { setCurrentPath } from '../store/reducers/breadcrumbs/breadcrumb-slice';
 import { registerUser } from '../store/reducers/auth/auth-actions';
+import updateMetaData from '../utils/create-meta';
 
 const { Title } = Typography;
 
@@ -19,6 +20,10 @@ interface SignUpFormValues {
 
 const SignUp: React.FC = () => {
   const dispatch = useAppDispatch();
+  updateMetaData({
+    title: 'Sign-up | News App',
+    description: 'Sign-up page',
+  });
   // const { error } = useAppSelector((state) => state.auth);
   const { control, handleSubmit } = useForm<SignUpFormValues>();
 

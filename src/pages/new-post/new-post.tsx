@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import { useAppDispatch } from '../../store/store-hooks';
 import { setCurrentPath } from '../../store/reducers/breadcrumbs/breadcrumb-slice';
 import { AppRoutesPath } from '../../router/types';
+import updateMetaData from '../../utils/create-meta';
 
 const initialValues = {
   article__title: '',
@@ -18,6 +19,11 @@ const initialValues = {
 
 const NewPost = () => {
   const [post, setPost] = useState(initialValues);
+
+  updateMetaData({
+    title: 'Create a new post | News App',
+    description: 'Create new post page',
+  });
 
   const onSubmit = () => {
     setPost(initialValues);

@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import { useAppDispatch } from '../../store/store-hooks';
 import { setCurrentPath } from '../../store/reducers/breadcrumbs/breadcrumb-slice';
 import { AppRoutesPath } from '../../router/types';
+import updateMetaData from '../../utils/create-meta';
 
 const Profile = () => {
   const userTheme = useAppSelector((state) => state?.theme.userTheme);
@@ -22,6 +23,10 @@ const Profile = () => {
   }
 
   const dispatch = useAppDispatch();
+  updateMetaData({
+    title: 'Profile | News App',
+    description: 'Profile page',
+  });
 
   useEffect(() => {
     dispatch(

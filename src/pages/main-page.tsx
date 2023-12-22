@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { CURRENT_PAGE, CURRENT_PAGE_SIZE } from '../shared/constants';
 import { useAppDispatch } from '../store/store-hooks';
 import { setCurrentPath } from '../store/reducers/breadcrumbs/breadcrumb-slice';
+import updateMetaData from '../utils/create-meta';
 
 const MainPage = () => {
   const [currentPage, setCurrentPage] = useState<number>(CURRENT_PAGE);
@@ -14,6 +15,7 @@ const MainPage = () => {
     useState<number>(CURRENT_PAGE_SIZE);
 
   const dispatch = useAppDispatch();
+  updateMetaData({ title: 'Home | News App', description: 'Main page' });
 
   const { data } = articlesAPI.useGetAllArticlesQuery({
     limit: currentPageSize,
