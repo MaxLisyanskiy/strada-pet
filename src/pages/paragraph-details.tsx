@@ -1,8 +1,13 @@
 import { Avatar, Layout, Space, Typography, Form, Input, Button } from 'antd';
+import { InfoCircleOutlined, HomeOutlined } from '@ant-design/icons';
 import Tag from '../components/tag';
 import { useAppSelector } from '../store/store-hooks';
 import { Link } from 'react-router-dom';
 import { AppRoutesPath } from '../router/types';
+import { useEffect } from 'react';
+import { useAppDispatch } from '../store/store-hooks';
+import { setCurrentPath } from '../store/reducers/breadcrumbs/breadcrumb-slice';
+import updateMetaData from '../utils/create-meta';
 
 const { Title, Paragraph } = Typography;
 const { TextArea } = Input;
@@ -12,6 +17,31 @@ const ParagraphDetails = () => {
   const backgroundColor = userTheme ? '#141414' : '#D8D8D8';
   const textColor = '#fff';
   const test = false;
+  const dispatch = useAppDispatch();
+  updateMetaData({ title: 'Details | News App', description: 'Details page' });
+
+  useEffect(() => {
+    dispatch(
+      setCurrentPath([
+        {
+          title: (
+            <>
+              <HomeOutlined />
+              <Link to={AppRoutesPath.MAIN}>Home</Link>
+            </>
+          ),
+        },
+        {
+          title: (
+            <>
+              <InfoCircleOutlined />
+              <Link to={AppRoutesPath.PARAGRAPH_DETAILS}>Details</Link>
+            </>
+          ),
+        },
+      ])
+    );
+  }, []);
 
   return (
     <Layout

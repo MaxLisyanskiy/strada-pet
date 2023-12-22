@@ -6,12 +6,16 @@ import {
   Radio,
   RadioChangeEvent,
 } from 'antd';
-import { SettingOutlined } from '@ant-design/icons';
-import { useState } from 'react';
-import { useAppSelector } from '../../store/store-hooks';
+import { SettingOutlined, UserOutlined, HomeOutlined } from '@ant-design/icons';
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { useAppSelector, useAppDispatch } from '../../store/store-hooks';
 import DetailedCardList from '../../components/detailed-card-list';
 import { articlesAPI } from '../../services/articles-api';
 import NotAuthPage from '../../components/not-auth-page';
+import { setCurrentPath } from '../../store/reducers/breadcrumbs/breadcrumb-slice';
+import { AppRoutesPath } from '../../router/types';
+import updateMetaData from '../../utils/create-meta';
 import './profile.css';
 
 const Profile = () => {
@@ -30,6 +34,35 @@ const Profile = () => {
   function handleRadioChange(e: RadioChangeEvent) {
     setSelectedRadio(e.target.value);
   }
+
+  const dispatch = useAppDispatch();
+  updateMetaData({
+    title: 'Profile | News App',
+    description: 'Profile page',
+  });
+
+  useEffect(() => {
+    dispatch(
+      setCurrentPath([
+        {
+          title: (
+            <>
+              <HomeOutlined />
+              <Link to={AppRoutesPath.MAIN}>Home</Link>
+            </>
+          ),
+        },
+        {
+          title: (
+            <>
+              <UserOutlined />
+              <Link to={AppRoutesPath.PROFILE}>Profile</Link>
+            </>
+          ),
+        },
+      ])
+    );
+  }, []);
 
   return (
     <>

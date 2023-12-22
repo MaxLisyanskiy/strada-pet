@@ -1,10 +1,14 @@
 import { Button, Form, Input, Layout, Typography } from 'antd';
+import { HomeOutlined, UserOutlined } from '@ant-design/icons';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { AppRoutesPath } from '../router/types';
 import { Link } from 'react-router-dom';
 // import { useAppSelector } from '../store/store-hooks';
 import { useAppDispatch } from '../store/store-hooks';
+import { useEffect } from 'react';
+import { setCurrentPath } from '../store/reducers/breadcrumbs/breadcrumb-slice';
 import { registerUser } from '../store/reducers/auth/auth-actions';
+import updateMetaData from '../utils/create-meta';
 
 const { Title } = Typography;
 
@@ -16,6 +20,10 @@ interface SignUpFormValues {
 
 const SignUp: React.FC = () => {
   const dispatch = useAppDispatch();
+  updateMetaData({
+    title: 'Sign-up | News App',
+    description: 'Sign-up page',
+  });
   // const { error } = useAppSelector((state) => state.auth);
   const { control, handleSubmit } = useForm<SignUpFormValues>();
 
@@ -23,6 +31,29 @@ const SignUp: React.FC = () => {
     data.email = data.email.toLowerCase();
     dispatch(registerUser(data));
   };
+
+  useEffect(() => {
+    dispatch(
+      setCurrentPath([
+        {
+          title: (
+            <>
+              <HomeOutlined />
+              <Link to={AppRoutesPath.MAIN}>Home</Link>
+            </>
+          ),
+        },
+        {
+          title: (
+            <>
+              <UserOutlined />
+              <Link to={AppRoutesPath.SIGN_UP}>Sign Up</Link>
+            </>
+          ),
+        },
+      ])
+    );
+  }, []);
 
   return (
     <Layout

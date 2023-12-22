@@ -1,6 +1,14 @@
 import { Button, Form, Input, Layout } from 'antd';
+import { HomeOutlined, EditOutlined } from '@ant-design/icons';
+
 import './new-post.css';
 import { ChangeEvent, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useAppDispatch } from '../../store/store-hooks';
+import { setCurrentPath } from '../../store/reducers/breadcrumbs/breadcrumb-slice';
+import { AppRoutesPath } from '../../router/types';
+import updateMetaData from '../../utils/create-meta';
 
 const initialValues = {
   article__title: '',
@@ -11,6 +19,11 @@ const initialValues = {
 
 const NewPost = () => {
   const [post, setPost] = useState(initialValues);
+
+  updateMetaData({
+    title: 'Create a new post | News App',
+    description: 'Create new post page',
+  });
 
   const onSubmit = () => {
     setPost(initialValues);
@@ -40,6 +53,31 @@ const NewPost = () => {
       tags: e.target.value,
     });
   }
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(
+      setCurrentPath([
+        {
+          title: (
+            <>
+              <HomeOutlined />
+              <Link to={AppRoutesPath.MAIN}>Home</Link>
+            </>
+          ),
+        },
+        {
+          title: (
+            <>
+              <EditOutlined />
+              <Link to={AppRoutesPath.SETTINGS}>New Post</Link>
+            </>
+          ),
+        },
+      ])
+    );
+  }, []);
 
   return (
     <Layout>

@@ -1,11 +1,14 @@
 import { Button, Form, Input, Typography, Layout } from 'antd';
-import { useEffect, useState } from 'react';
+import { HomeOutlined, UserOutlined } from '@ant-design/icons';
+import toast from 'react-hot-toast';
+import { useState, useEffect } from 'react';
 import { ChangeEvent } from 'react';
 import { AppRoutesPath } from '../router/types';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../store/store-hooks';
+import { setCurrentPath } from '../store/reducers/breadcrumbs/breadcrumb-slice';
 import { loginUser } from '../store/reducers/auth/auth-actions';
-import toast from 'react-hot-toast';
+import updateMetaData from '../utils/create-meta';
 
 const { Title } = Typography;
 
@@ -30,6 +33,34 @@ const SignIn = () => {
       }
     }, 3500);
   };
+
+  updateMetaData({
+    title: 'Sign-in | News App',
+    description: 'Sign-in page',
+  });
+
+  useEffect(() => {
+    dispatch(
+      setCurrentPath([
+        {
+          title: (
+            <>
+              <HomeOutlined />
+              <Link to={AppRoutesPath.MAIN}>Home</Link>
+            </>
+          ),
+        },
+        {
+          title: (
+            <>
+              <UserOutlined />
+              <Link to={AppRoutesPath.SIGN_IN}>Sign In</Link>
+            </>
+          ),
+        },
+      ])
+    );
+  }, []);
 
   const emailChange = (e: ChangeEvent<HTMLInputElement>) => {
     setCredentials({

@@ -1,7 +1,13 @@
 import { Input, Button, Layout, Typography, Form } from 'antd';
+import { SettingOutlined, HomeOutlined, UserOutlined } from '@ant-design/icons';
 import { useForm, Controller } from 'react-hook-form';
-import { useAppSelector } from '../store/store-hooks';
+import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../store/store-hooks';
 import NotAuthPage from '../components/not-auth-page';
+import { setCurrentPath } from '../store/reducers/breadcrumbs/breadcrumb-slice';
+import { AppRoutesPath } from '../router/types';
+import updateMetaData from '../utils/create-meta';
 
 const { Title } = Typography;
 const { TextArea } = Input;
@@ -21,6 +27,42 @@ const SettingsPage: React.FC = () => {
   const onSubmit = (data: SettingsFormData) => {
     console.log(data);
   };
+
+  const dispatch = useAppDispatch();
+  updateMetaData({
+    title: 'Settings | News App',
+    description: 'Settings page',
+  });
+
+  useEffect(() => {
+    dispatch(
+      setCurrentPath([
+        {
+          title: (
+            <>
+              <HomeOutlined />
+              <Link to={AppRoutesPath.MAIN}>Home</Link>
+            </>
+          ),
+        },
+        {
+          title: (
+            <>
+              <UserOutlined /> <Link to={AppRoutesPath.PROFILE}>Profile</Link>
+            </>
+          ),
+        },
+        {
+          title: (
+            <>
+              <SettingOutlined />
+              <Link to={AppRoutesPath.SETTINGS}>Settings</Link>
+            </>
+          ),
+        },
+      ])
+    );
+  }, []);
 
   return (
     <>
