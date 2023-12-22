@@ -1,4 +1,4 @@
-import { Menu, Button, Typography, Avatar } from 'antd';
+import { Menu, Button, Avatar } from 'antd';
 import { SettingOutlined } from '@ant-design/icons';
 import { EditOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
@@ -7,35 +7,16 @@ import { AppRoutesPath } from '../router/types';
 
 const AppHeader = () => {
   return (
-    <div
-      style={{
-        display: 'flex',
-      }}
-    >
-      <Menu
-        mode="horizontal"
-        style={{
-          padding: '20px',
-        }}
-      >
-        <Typography
+    <header style={{ display: 'flex' }}>
+      <Link to={AppRoutesPath.MAIN}>
+        <img
+          src="https://static.semrush.com/blog/uploads/media/17/48/17484f6f167c8596d4f7c97aa884172f/blog-post-templates.svg"
+          alt="Your Alt Text"
           style={{
-            marginLeft: '15px',
-            fontSize: '26px',
+            width: '50px',
           }}
-        >
-          <Link to={AppRoutesPath.MAIN}>
-            <img
-              src="https://static.semrush.com/blog/uploads/media/17/48/17484f6f167c8596d4f7c97aa884172f/blog-post-templates.svg"
-              alt="Your Alt Text"
-              style={{
-                width: '50px',
-              }}
-            />
-          </Link>
-        </Typography>
-      </Menu>
-
+        />
+      </Link>
       <Menu
         mode="horizontal"
         style={{
@@ -43,6 +24,7 @@ const AppHeader = () => {
           justifyContent: 'right',
           alignItems: 'center',
           flex: 1,
+          width: '100%',
         }}
       >
         <Menu.Item key="main">
@@ -93,7 +75,7 @@ const AppHeader = () => {
           <ThemeSwitch />
         </Menu.Item>
       </Menu>
-    </div>
+    </header>
   );
 };
 

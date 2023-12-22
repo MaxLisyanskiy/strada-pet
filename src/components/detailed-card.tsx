@@ -2,6 +2,7 @@ import { Card, Avatar } from 'antd';
 import { HeartFilled } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import { AppRoutesPath } from '../router/types';
+
 const { Meta } = Card;
 
 interface DetailedCardProps {

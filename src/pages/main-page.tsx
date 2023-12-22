@@ -6,23 +6,16 @@ import TagList from '../components/tag-list';
 
 const MainPage = () => {
   return (
-    <Layout style={{ width: '80%', margin: '0 auto', padding: '50px 0' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            marginRight: '30px',
-          }}
-        >
-          <DetailedCardList />
-          <AppPagination />
-        </div>
-        <div style={{ height: '180px', minWidth: '300px' }}>
-          <TagList />
-        </div>
-      </div>
+    <Layout
+      style={{
+        width: '80%',
+        margin: '0 auto',
+        padding: '50px 0',
+      }}
+    >
+      <TagList />
+      <DetailedCardList />
+      <AppPagination />
     </Layout>
   );
 };

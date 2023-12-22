@@ -2,7 +2,7 @@ import { Button, Form, Input, Layout, Typography } from 'antd';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { AppRoutesPath } from '../router/types';
 import { Link } from 'react-router-dom';
-import { useAppSelector } from '../store/store-hooks';
+// import { useAppSelector } from '../store/store-hooks';
 import { useAppDispatch } from '../store/store-hooks';
 import { registerUser } from '../store/reducers/auth/auth-actions';
 
@@ -16,15 +16,13 @@ interface SignUpFormValues {
 
 const SignUp: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { error } = useAppSelector((state) => state.auth);
+  // const { error } = useAppSelector((state) => state.auth);
   const { control, handleSubmit } = useForm<SignUpFormValues>();
 
   const onSubmit: SubmitHandler<SignUpFormValues> = (data) => {
     data.email = data.email.toLowerCase();
     dispatch(registerUser(data));
   };
-
-  console.log(error);
 
   return (
     <Layout
