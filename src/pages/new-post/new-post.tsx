@@ -1,6 +1,13 @@
 import { Button, Form, Input, Layout } from 'antd';
+import { HomeOutlined, EditOutlined } from '@ant-design/icons';
+
 import './new-post.css';
 import { ChangeEvent, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useAppDispatch } from '../../store/store-hooks';
+import { setCurrentPath } from '../../store/reducers/breadcrumbs/breadcrumb-slice';
+import { AppRoutesPath } from '../../router/types';
 
 const initialValues = {
   article__title: '',
@@ -40,6 +47,31 @@ const NewPost = () => {
       tags: e.target.value,
     });
   }
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(
+      setCurrentPath([
+        {
+          title: (
+            <>
+              <HomeOutlined />
+              <Link to={AppRoutesPath.MAIN}>Home</Link>
+            </>
+          ),
+        },
+        {
+          title: (
+            <>
+              <EditOutlined />
+              <Link to={AppRoutesPath.SETTINGS}>New Post</Link>
+            </>
+          ),
+        },
+      ])
+    );
+  }, []);
 
   return (
     <Layout>

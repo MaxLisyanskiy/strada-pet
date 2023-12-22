@@ -1,8 +1,12 @@
+import { Button, Form, Input, Typography, Layout } from 'antd';
+import { HomeOutlined, UserOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import { ChangeEvent } from 'react';
-import { Button, Form, Input, Typography, Layout } from 'antd';
 import { AppRoutesPath } from '../router/types';
 import { Link } from 'react-router-dom';
+import { useAppDispatch } from '../store/store-hooks';
+import { useEffect } from 'react';
+import { setCurrentPath } from '../store/reducers/breadcrumbs/breadcrumb-slice';
 
 const { Title } = Typography;
 
@@ -13,6 +17,31 @@ const initialValues = {
 
 const SignIn = () => {
   const [credentials, setCredentials] = useState(initialValues);
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(
+      setCurrentPath([
+        {
+          title: (
+            <>
+              <HomeOutlined />
+              <Link to={AppRoutesPath.MAIN}>Home</Link>
+            </>
+          ),
+        },
+        {
+          title: (
+            <>
+              <UserOutlined />
+              <Link to={AppRoutesPath.SIGN_IN}>Sign In</Link>
+            </>
+          ),
+        },
+      ])
+    );
+  }, []);
 
   const usernameChange = (e: ChangeEvent<HTMLInputElement>) => {
     setCredentials({

@@ -9,6 +9,11 @@ const App = () => {
     <ConfigProvider
       theme={{
         algorithm: !userTheme ? theme.defaultAlgorithm : theme.darkAlgorithm,
+        components: {
+          Breadcrumb: {
+            linkHoverColor: '#AED6F1',
+          },
+        },
       }}
     >
       <AppRoutes />
