@@ -7,6 +7,7 @@ import { AppRoutesPath } from '../router/types';
 import { useEffect } from 'react';
 import { useAppDispatch } from '../store/store-hooks';
 import { setCurrentPath } from '../store/reducers/breadcrumbs/breadcrumb-slice';
+import updateMetaData from '../utils/create-meta';
 
 const { Title, Paragraph } = Typography;
 const { TextArea } = Input;
@@ -17,6 +18,7 @@ const ParagraphDetails = () => {
   const textColor = '#fff';
   const test = false;
   const dispatch = useAppDispatch();
+  updateMetaData({ title: 'Details | News App', description: 'Details page' });
 
   useEffect(() => {
     dispatch(

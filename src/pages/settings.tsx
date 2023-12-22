@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { useAppDispatch } from '../store/store-hooks';
 import { setCurrentPath } from '../store/reducers/breadcrumbs/breadcrumb-slice';
 import { AppRoutesPath } from '../router/types';
+import updateMetaData from '../utils/create-meta';
 
 const { Title } = Typography;
 const { TextArea } = Input;
@@ -26,6 +27,10 @@ const SettingsPage: React.FC = () => {
   };
 
   const dispatch = useAppDispatch();
+  updateMetaData({
+    title: 'Settings | News App',
+    description: 'Settings page',
+  });
 
   useEffect(() => {
     dispatch(

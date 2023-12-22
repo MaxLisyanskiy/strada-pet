@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { useAppDispatch } from '../store/store-hooks';
 import { useEffect } from 'react';
 import { setCurrentPath } from '../store/reducers/breadcrumbs/breadcrumb-slice';
+import updateMetaData from '../utils/create-meta';
 
 const { Title } = Typography;
 
@@ -19,6 +20,10 @@ const SignIn = () => {
   const [credentials, setCredentials] = useState(initialValues);
 
   const dispatch = useAppDispatch();
+  updateMetaData({
+    title: 'Sign-in | News App',
+    description: 'Sign-in page',
+  });
 
   useEffect(() => {
     dispatch(
