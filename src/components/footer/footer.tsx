@@ -18,7 +18,6 @@ const AppFooter = () => {
           alt="страда"
         />
       </a>
-      А
       <Typography className="footer__title">
         <a href={GITHUB_APP_URL} target="_blank">
           Strada pet ©2023
