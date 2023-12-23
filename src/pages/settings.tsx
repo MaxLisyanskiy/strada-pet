@@ -1,13 +1,15 @@
-import { Input, Button, Layout, Typography, Form } from 'antd';
+import { Input, Button, Layout, Typography, Form, Modal } from 'antd';
 import { SettingOutlined, HomeOutlined, UserOutlined } from '@ant-design/icons';
 import { useForm, Controller } from 'react-hook-form';
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 import { useAppDispatch, useAppSelector } from '../store/store-hooks';
 import NotAuthPage from '../components/not-auth-page';
 import { setCurrentPath } from '../store/reducers/breadcrumbs/breadcrumb-slice';
 import { AppRoutesPath } from '../router/types';
 import updateMetaData from '../utils/create-meta';
+import { resetAuthState } from '../store/reducers/auth/auth-slice';
 
 const { Title } = Typography;
 const { TextArea } = Input;
@@ -23,12 +25,21 @@ interface SettingsFormData {
 const SettingsPage: React.FC = () => {
   const { control, handleSubmit } = useForm<SettingsFormData>();
   const isSuccess = useAppSelector((state) => state.auth.success);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const onSubmit = (data: SettingsFormData) => {
     console.log(data);
   };
 
-  const dispatch = useAppDispatch();
+  const logoutClick = () => {
+    dispatch(resetAuthState());
+    navigate(AppRoutesPath.MAIN);
+    toast.success(
+      "You have successfully logged out of your account.. We'll miss you!"
+    );
+  };
+
   updateMetaData({
     title: 'Settings | News App',
     description: 'Settings page',
@@ -62,7 +73,21 @@ const SettingsPage: React.FC = () => {
         },
       ])
     );
-  }, []);
+  }, []); // eslint-disable-line
+
+  const confirmLogout = () => {
+    Modal.confirm({
+      title: 'Logout window',
+      content: (
+        <div>
+          <p>Are you sure you want to log out?</p>
+        </div>
+      ),
+      onOk() {
+        logoutClick();
+      },
+    });
+  };
 
   return (
     <>
@@ -144,7 +169,9 @@ const SettingsPage: React.FC = () => {
               </Button>
             </Form.Item>
             <Form.Item style={{ alignSelf: 'flex-start' }}>
-              <Button danger>Or click here to logout</Button>
+              <Button danger onClick={confirmLogout}>
+                Or click here to logout
+              </Button>
             </Form.Item>
           </Form>
         </Layout>
