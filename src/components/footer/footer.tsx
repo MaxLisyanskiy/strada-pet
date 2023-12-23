@@ -1,13 +1,12 @@
 import { Typography, Layout, Avatar, Space } from 'antd';
 import { GITHUB_URL, GITHUB_USERNAME } from '../../shared/constants';
 import { useAppSelector } from '../../store/store-hooks';
+import { GITHUB_APP_URL } from '../../shared/constants';
 import './footer.css';
 
 const { Footer } = Layout;
 
 const AppFooter = () => {
-  const GITHUB_APP_URL = import.meta.env.VITE_APP_GITHUB_URL;
-
   const userTheme = useAppSelector((state) => state.theme.userTheme);
   const backgroundColor = userTheme ? '#141414' : '#474A51';
   return (
