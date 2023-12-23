@@ -24,7 +24,7 @@ interface SettingsFormData {
 
 const SettingsPage: React.FC = () => {
   const { control, handleSubmit } = useForm<SettingsFormData>();
-  const isSuccess = useAppSelector((state) => state.auth.success);
+  const { userInfo } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -91,7 +91,7 @@ const SettingsPage: React.FC = () => {
 
   return (
     <>
-      {!isSuccess ? (
+      {!userInfo ? (
         <NotAuthPage />
       ) : (
         <Layout

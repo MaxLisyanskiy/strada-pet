@@ -54,7 +54,7 @@ const SignUp: React.FC = () => {
         },
       ])
     );
-  }, []);
+  }, []); // eslint-disable-line
 
   return (
     <Layout

@@ -9,7 +9,6 @@ const ProtectedSignUpAndSignInRoute = ({
   children: JSX.Element;
 }) => {
   const userInfo = useAppSelector((state) => state.auth.userInfo);
-  console.log(userInfo);
 
   if (userInfo) {
     toast.error('You are already logged in');

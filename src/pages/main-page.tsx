@@ -1,5 +1,5 @@
 import { Layout } from 'antd';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { articlesAPI } from '../services/articles-api';
 import AppPagination from '../components/pagination';
 import DetailedCardList from '../components/detailed-card-list';
@@ -23,7 +23,9 @@ const MainPage = () => {
     offset: (currentPage - 1) * currentPageSize,
   });
 
-  dispatch(setCurrentPath([{}]));
+  useEffect(() => {
+    dispatch(setCurrentPath([{}]));
+  }, []); // eslint-disable-line
 
   return (
     <Layout

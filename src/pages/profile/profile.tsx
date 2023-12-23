@@ -25,7 +25,7 @@ const Profile = () => {
   const [selectedRadio, setSelectedRadio] = useState('my');
   const backgroundColor = userTheme ? '#141414' : '#474A51';
   const userCards = selectedRadio === 'my' ? ['123'] : [];
-  const isSuccess = useAppSelector((state) => state.auth.success);
+  const { userInfo } = useAppSelector((state) => state.auth);
   const { data, isLoading } = articlesAPI.useGetAllArticlesQuery({
     limit: 10,
     offset: 0,
@@ -66,7 +66,7 @@ const Profile = () => {
 
   return (
     <>
-      {!isSuccess ? (
+      {!userInfo ? (
         <NotAuthPage />
       ) : (
         <Layout>
