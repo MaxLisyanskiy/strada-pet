@@ -81,7 +81,7 @@ const NewPost = () => {
   }, []);
 
   return (
-    <Layout>
+    <Layout style={{ padding: '0 10px' }}>
       <Form
         className="form__new-post"
         name="basic"

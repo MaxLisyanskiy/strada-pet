@@ -89,7 +89,7 @@ const Profile = () => {
                 </div>
                 <div className="user__content-button">
                   <Link to={AppRoutesPath.SETTINGS}>
-                    <Button>
+                    <Button style={{ margin: '10px 10px 0 0' }}>
                       <SettingOutlined /> Edit Profile Settings
                     </Button>
                   </Link>
