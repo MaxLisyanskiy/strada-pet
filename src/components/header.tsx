@@ -7,11 +7,11 @@ import { AppRoutesPath } from '../router/types';
 import { useAppSelector } from '../store/store-hooks';
 
 const AppHeader = () => {
-  const loginStatus = useAppSelector((state) => state.auth.success);
+  const { userInfo } = useAppSelector((state) => state.auth);
   const username = useAppSelector((state) => state.auth.userInfo?.username);
   const userImage = useAppSelector((state) => state.auth.userInfo?.image);
 
-  if (loginStatus === 200 || loginStatus === 201) {
+  if (userInfo) {
     return (
       <header style={{ display: 'flex', padding: '0' }}>
         <Link to={AppRoutesPath.MAIN}>
@@ -64,6 +64,7 @@ const AppHeader = () => {
               {username}
             </Link>
           </Menu.Item>
+
           <Menu.Item key="themeSwitch">
             <ThemeSwitch />
           </Menu.Item>

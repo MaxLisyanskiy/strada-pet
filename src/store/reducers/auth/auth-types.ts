@@ -11,7 +11,6 @@ export interface IUserInfo {
 export interface initialStateTypes {
   loading: boolean;
   userInfo: IUserInfo | null;
-  userToken: string;
   error: string | undefined | SerializedError;
   success: string | number;
 }
