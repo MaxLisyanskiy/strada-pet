@@ -6,6 +6,7 @@ import { TagsResponse } from '../types/tags-type';
 interface GetAllArticlesParams {
   limit: number;
   offset: number;
+  tag: string;
 }
 
 export const articlesAPI = createApi({
@@ -13,13 +14,20 @@ export const articlesAPI = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: API_URL }),
   endpoints: (builder) => ({
     getAllArticles: builder.query<IArticlesResponse, GetAllArticlesParams>({
-      query: ({ limit, offset }) => ({
-        url: 'articles',
-        params: {
+      query: ({ limit, offset, tag }) => {
+        const params: Record<string, string | number> = {
           limit: limit ?? 10,
           offset: offset ?? 0,
-        },
-      }),
+        };
+
+        if (tag && tag.trim() !== '') {
+          params.tag = tag;
+        }
+        return {
+          url: 'articles',
+          params,
+        };
+      },
     }),
   }),
 });

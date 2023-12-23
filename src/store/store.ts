@@ -4,11 +4,13 @@ import { articlesAPI, tagsAPI } from '../services/articles-api';
 import themeReducer from './reducers/theme-slice';
 import authSlice from './reducers/auth/auth-slice';
 import breadcrumbSlice from './reducers/breadcrumbs/breadcrumb-slice';
+import tagNameSlice from './reducers/tag-slice';
 
 const rootReducer = combineReducers({
   theme: themeReducer,
   auth: authSlice,
   breadcrumb: breadcrumbSlice,
+  tagName: tagNameSlice,
   [articlesAPI.reducerPath]: articlesAPI.reducer,
   [tagsAPI.reducerPath]: tagsAPI.reducer,
 });

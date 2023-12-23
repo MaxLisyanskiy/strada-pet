@@ -5,27 +5,39 @@ import AppPagination from '../components/pagination';
 import DetailedCardList from '../components/detailed-card-list';
 import TagList from '../components/tag-list';
 import { CURRENT_PAGE, CURRENT_PAGE_SIZE } from '../shared/constants';
-import { useAppDispatch } from '../store/store-hooks';
+import { useAppDispatch, useAppSelector } from '../store/store-hooks';
 import { setCurrentPath } from '../store/reducers/breadcrumbs/breadcrumb-slice';
 import updateMetaData from '../utils/create-meta';
+import { useSearchParams } from 'react-router-dom';
 
 const MainPage = () => {
-  const [currentPage, setCurrentPage] = useState<number>(CURRENT_PAGE);
-  const [currentPageSize, setCurrentPageSize] =
-    useState<number>(CURRENT_PAGE_SIZE);
-
   const dispatch = useAppDispatch();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [pageSize, setPageSize] = useState<number>(CURRENT_PAGE_SIZE);
+
+  const tagName = useAppSelector((state) => state.tagName.tagName);
+  const page = searchParams.get('page') ?? String(CURRENT_PAGE);
+
+  useEffect(() => {
+    dispatch(setCurrentPath([{}]));
+    setSearchParams({ page, pageSize: String(pageSize), tag: tagName });
+  }, [dispatch, pageSize, tagName]); // eslint-disable-line
 
   updateMetaData({ title: 'Home | News App', description: 'Main page' });
 
   const { data, isLoading } = articlesAPI.useGetAllArticlesQuery({
-    limit: currentPageSize,
-    offset: (currentPage - 1) * currentPageSize,
+    limit: Number(pageSize),
+    offset: (Number(page) - 1) * Number(pageSize),
+    tag: tagName,
   });
 
-  useEffect(() => {
-    dispatch(setCurrentPath([{}]));
-  }, []); // eslint-disable-line
+  const onChangePage = (newPage: number) => {
+    setSearchParams({
+      page: String(newPage),
+      pageSize: String(pageSize),
+      tag: tagName,
+    });
+  };
 
   return (
     <Layout
@@ -38,11 +50,11 @@ const MainPage = () => {
       <TagList />
       <DetailedCardList data={data} isLoading={isLoading} />
       <AppPagination
-        page={currentPage}
-        pageSize={currentPageSize}
+        page={Number(page)}
+        pageSize={Number(pageSize)}
         articlesCount={data?.articlesCount}
-        onChangeCurrentPage={setCurrentPage}
-        onChangeCurrentPageSize={setCurrentPageSize}
+        onChangeCurrentPage={onChangePage}
+        onChangeCurrentPageSize={setPageSize}
       />
     </Layout>
   );
