@@ -7,6 +7,7 @@ const ThemeSwitch = () => {
   const userTheme = useAppSelector((state) => state.theme.userTheme);
 
   const handleToggleTheme = () => {
+    localStorage.setItem('theme', JSON.stringify(!userTheme));
     dispatch(toggleTheme(!userTheme));
   };
 

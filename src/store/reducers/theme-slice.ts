@@ -4,8 +4,9 @@ interface NewsState {
   userTheme: boolean;
 }
 
+const userTheme = localStorage.getItem('theme') === 'true';
 const initialState: NewsState = {
-  userTheme: false,
+  userTheme: userTheme || false,
 };
 
 const themeReducer = createSlice({
