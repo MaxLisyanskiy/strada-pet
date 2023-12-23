@@ -1,10 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { loginUser, registerUser } from './auth-actions';
 import { initialStateTypes } from './auth-types';
+import Cookies from 'js-cookie';
+
+const infoAboutUser = Cookies.get('userInfo');
+console.log(infoAboutUser);
 
 const initialState: initialStateTypes = {
   loading: false,
-  userInfo: null,
+  userInfo: infoAboutUser ? JSON.parse(infoAboutUser) : null,
   userToken: '',
   error: '',
   success: '',
@@ -40,6 +44,8 @@ const authSlice = createSlice({
         state.error = '';
       })
       .addCase(loginUser.fulfilled, (state, { payload }) => {
+        console.log(payload);
+
         state.loading = false;
         state.success = payload.status;
         state.userInfo = payload.data.user;

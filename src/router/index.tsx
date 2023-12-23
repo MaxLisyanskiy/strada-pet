@@ -9,6 +9,8 @@ import SignIn from '../pages/sign-in';
 import SignUp from '../pages/sign-up';
 import SettingsPage from '../pages/settings';
 import NewPost from '../pages/new-post/new-post';
+import ProtectedProfileAndSettingsRoute from './private-routes/user-route';
+import ProtectedSignUpAndSignInRoute from './private-routes/auth-route';
 
 const AppRoutes = () => {
   return (
@@ -19,10 +21,41 @@ const AppRoutes = () => {
           path={AppRoutesPath.PARAGRAPH_DETAILS}
           element={<ParagraphDetails />}
         />
-        <Route path={AppRoutesPath.PROFILE} element={<Profile />} />
-        <Route path={AppRoutesPath.SIGN_IN} element={<SignIn />} />
-        <Route path={AppRoutesPath.SIGN_UP} element={<SignUp />} />
-        <Route path={AppRoutesPath.SETTINGS} element={<SettingsPage />} />
+
+        <Route
+          path={AppRoutesPath.PROFILE}
+          element={
+            <ProtectedProfileAndSettingsRoute>
+              <Profile />
+            </ProtectedProfileAndSettingsRoute>
+          }
+        />
+        <Route
+          path={AppRoutesPath.SETTINGS}
+          element={
+            <ProtectedProfileAndSettingsRoute>
+              <SettingsPage />
+            </ProtectedProfileAndSettingsRoute>
+          }
+        />
+
+        <Route
+          path={AppRoutesPath.SIGN_IN}
+          element={
+            <ProtectedSignUpAndSignInRoute>
+              <SignIn />
+            </ProtectedSignUpAndSignInRoute>
+          }
+        />
+        <Route
+          path={AppRoutesPath.SIGN_UP}
+          element={
+            <ProtectedSignUpAndSignInRoute>
+              <SignUp />
+            </ProtectedSignUpAndSignInRoute>
+          }
+        />
+
         <Route path={AppRoutesPath.NEW_POST} element={<NewPost />} />
         <Route path={AppRoutesPath.NOT_FOUND_PAGE} element={<NotFoundPage />} />
       </Route>

@@ -15,6 +15,7 @@ const MainPage = () => {
     useState<number>(CURRENT_PAGE_SIZE);
 
   const dispatch = useAppDispatch();
+
   updateMetaData({ title: 'Home | News App', description: 'Main page' });
 
   const { data, isLoading } = articlesAPI.useGetAllArticlesQuery({

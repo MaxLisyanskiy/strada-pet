@@ -24,7 +24,8 @@ const SignUp: React.FC = () => {
     title: 'Sign-up | News App',
     description: 'Sign-up page',
   });
-  // const { error } = useAppSelector((state) => state.auth);
+  // const userInfo = useAppSelector((state) => state.auth.success);
+
   const { control, handleSubmit } = useForm<SignUpFormValues>();
 
   const onSubmit: SubmitHandler<SignUpFormValues> = (data) => {
