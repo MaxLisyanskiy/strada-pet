@@ -98,7 +98,7 @@ const SettingsPage: React.FC = () => {
           style={{
             display: 'flex',
             alignItems: 'center',
-            paddingTop: '50px',
+            padding: '50px 10px 0 10px',
           }}
         >
           <Title level={3}>Your Settings</Title>

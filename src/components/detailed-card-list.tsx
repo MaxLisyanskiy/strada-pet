@@ -6,7 +6,7 @@ import { IArticlesResponse } from '../types/articles-type';
 interface DetailedCardListProps {
   data: IArticlesResponse | undefined;
   isLoading: boolean;
-  error: Error | null;
+  error?: Error | null;
 }
 
 const DetailedCardList = (props: DetailedCardListProps) => {

@@ -10,13 +10,12 @@ import { setCurrentPath } from '../store/reducers/breadcrumbs/breadcrumb-slice';
 import updateMetaData from '../utils/create-meta';
 
 const { Title, Paragraph } = Typography;
-const { TextArea } = Input;
 
 const ParagraphDetails = () => {
   const userTheme = useAppSelector((state) => state.theme.userTheme);
+  const userInfo = useAppSelector((state) => state.auth.userInfo);
   const backgroundColor = userTheme ? '#141414' : '#D8D8D8';
   const textColor = '#fff';
-  const test = false;
   const dispatch = useAppDispatch();
   updateMetaData({ title: 'Details | News App', description: 'Details page' });
 
@@ -49,8 +48,8 @@ const ParagraphDetails = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        width: '100%',
         margin: '0 auto',
-        width: '100vw',
       }}
     >
       <Space
@@ -61,10 +60,11 @@ const ParagraphDetails = () => {
       >
         <Layout
           style={{
+            borderRadius: '35px',
             backgroundColor: backgroundColor,
             padding: '30px',
             marginBottom: '10px',
-            width: '100vw',
+            margin: '0 auto',
           }}
         >
           <Title
@@ -149,7 +149,7 @@ const ParagraphDetails = () => {
           justifyContent: 'center',
         }}
       >
-        {test ? (
+        {!userInfo ? (
           <Space
             style={{
               marginTop: '10px',
@@ -165,12 +165,12 @@ const ParagraphDetails = () => {
           <Form
             size="large"
             style={{
-              width: '500px',
               margin: '30px 0 30px 0',
+              width: '300px',
             }}
           >
             <Form.Item>
-              <TextArea rows={4}></TextArea>
+              <Input.TextArea rows={4} placeholder="Write your comment" />
             </Form.Item>
             <Space
               style={{
