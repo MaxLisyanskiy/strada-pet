@@ -1,6 +1,7 @@
 import { Typography, Layout, Avatar, Space } from 'antd';
 import { GITHUB_URL, GITHUB_USERNAME } from '../../shared/constants';
 import { useAppSelector } from '../../store/store-hooks';
+import { GITHUB_APP_URL } from '../../shared/constants';
 import './footer.css';
 
 const { Footer } = Layout;
@@ -13,12 +14,15 @@ const AppFooter = () => {
       <a href="https://strada.one/" target="_blank">
         <img
           className="footer__logo"
-          src="	https://strada.one/_next/image?url=%2Fimg%2Flanding%2Flogo.png&w=256&q=75"
+          src="https://strada.one/_next/image?url=%2Fimg%2Flanding%2Flogo.png&w=256&q=75"
           alt="страда"
         />
       </a>
-
-      <Typography className="footer__title">Strada pet ©2023</Typography>
+      <Typography className="footer__title">
+        <a href={GITHUB_APP_URL} target="_blank">
+          Strada pet ©2023
+        </a>
+      </Typography>
       <div>
         <Typography className="footer__team">OUR TEAM</Typography>
         <Space wrap size={14}>
