@@ -29,6 +29,7 @@ const Profile = () => {
   const { data, isLoading } = articlesAPI.useGetAllArticlesQuery({
     limit: 10,
     offset: 0,
+    tag: '',
   });
 
   function handleRadioChange(e: RadioChangeEvent) {
