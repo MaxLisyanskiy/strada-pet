@@ -1,7 +1,7 @@
 import { Menu, Button, Avatar } from 'antd';
 import { SettingOutlined } from '@ant-design/icons';
 import { EditOutlined } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import ThemeSwitch from './theme-switch';
 import { AppRoutesPath } from '../router/types';
 import { useAppSelector } from '../store/store-hooks';
@@ -11,18 +11,29 @@ const AppHeader = () => {
   const username = useAppSelector((state) => state.auth.userInfo?.username);
   const userImage = useAppSelector((state) => state.auth.userInfo?.image);
 
+  const location = useLocation();
+
+  const selectedKey = (() => {
+    if (location.pathname === AppRoutesPath.MAIN) {
+      return 'main';
+    } else if (location.pathname === AppRoutesPath.NEW_POST) {
+      return 'new-post';
+    } else if (location.pathname === AppRoutesPath.SETTINGS) {
+      return 'settings';
+    } else if (location.pathname === AppRoutesPath.PROFILE) {
+      return 'profile';
+    } else if (location.pathname === AppRoutesPath.SIGN_IN) {
+      return 'sign-in';
+    } else if (location.pathname === AppRoutesPath.SIGN_UP) {
+      return 'sign-up';
+    }
+
+    return '';
+  })();
+
   if (userInfo) {
     return (
-      <header style={{ display: 'flex', padding: '0' }}>
-        <Link to={AppRoutesPath.MAIN}>
-          <img
-            src="https://static.semrush.com/blog/uploads/media/17/48/17484f6f167c8596d4f7c97aa884172f/blog-post-templates.svg"
-            alt="Your Alt Text"
-            style={{
-              width: '50px',
-            }}
-          />
-        </Link>
+      <header style={{ display: 'flex' }}>
         <Menu
           mode="horizontal"
           style={{
@@ -31,7 +42,9 @@ const AppHeader = () => {
             alignItems: 'center',
             flex: 1,
             width: '100%',
+            padding: '15px',
           }}
+          selectedKeys={[selectedKey]}
         >
           <Menu.Item key="main">
             <Button type="primary">
@@ -75,15 +88,6 @@ const AppHeader = () => {
 
   return (
     <header style={{ display: 'flex', padding: '0' }}>
-      <Link to={AppRoutesPath.MAIN}>
-        <img
-          src="https://static.semrush.com/blog/uploads/media/17/48/17484f6f167c8596d4f7c97aa884172f/blog-post-templates.svg"
-          alt="Your Alt Text"
-          style={{
-            width: '50px',
-          }}
-        />
-      </Link>
       <Menu
         mode="horizontal"
         style={{
@@ -93,6 +97,7 @@ const AppHeader = () => {
           flex: 1,
           width: '100%',
         }}
+        selectedKeys={[selectedKey]}
       >
         <Menu.Item key="main">
           <Button type="primary">
