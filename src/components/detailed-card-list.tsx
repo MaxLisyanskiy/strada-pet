@@ -21,7 +21,7 @@ const DetailedCardList = (props: DetailedCardListProps) => {
 
   if (isLoading)
     return (
-      <div style={{ width: '1500px', margin: '0 auto' }}>
+      <div style={{ maxWidth: '1500px', margin: '0 auto', width: '100%' }}>
         {GenerateSkeleton()}
       </div>
     );
