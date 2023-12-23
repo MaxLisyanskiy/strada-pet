@@ -62,7 +62,7 @@ const Profile = () => {
         },
       ])
     );
-  }, []);
+  }, []); // eslint-disable-line
 
   return (
     <>
@@ -88,7 +88,9 @@ const Profile = () => {
                 </div>
                 <div className="user__content-button">
                   <Button>
-                    <SettingOutlined /> Edit Profile Settings
+                    <Link to={AppRoutesPath.SETTINGS}>
+                      <SettingOutlined /> Edit Profile Settings
+                    </Link>
                   </Button>
                 </div>
               </div>

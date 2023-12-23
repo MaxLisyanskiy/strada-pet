@@ -12,7 +12,13 @@ const initialState: initialStateTypes = {
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    resetAuthState: (state) => {
+      state.userInfo = null;
+      state.success = '';
+      state.userToken = '';
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(registerUser.pending, (state) => {
@@ -45,4 +51,6 @@ const authSlice = createSlice({
       });
   },
 });
+
+export const { resetAuthState } = authSlice.actions;
 export default authSlice.reducer;
