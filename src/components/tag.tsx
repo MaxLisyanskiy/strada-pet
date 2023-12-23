@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Space, Tag } from 'antd';
-import Cookies from 'js-cookie';
+import { useAppDispatch, useAppSelector } from '../store/store-hooks';
+import { checkTagName } from '../store/reducers/tag-slice';
 const { CheckableTag } = Tag;
 
 interface AppTagProps {
@@ -10,24 +11,31 @@ interface AppTagProps {
 }
 
 const AppTag: React.FC<AppTagProps> = ({ tagsData = {} }) => {
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const dispatch = useAppDispatch();
+  const [selectedTag, setSelectedTag] = useState<string>('');
+  const [toggle, setToggle] = useState<boolean>(true);
 
   const handleChange = (tag: string, checked: boolean) => {
-    const nextSelectedTags = checked
-      ? [...selectedTags, tag]
-      : selectedTags.filter((t) => t !== tag);
-    setSelectedTags(nextSelectedTags);
+    setSelectedTag(checked ? tag : '');
   };
+  const tagName = useAppSelector((state) => state.tagName.tagName);
 
   return (
     <Space size={[0, 8]} wrap>
       {tagsData?.tags?.map((tag: string) => (
         <CheckableTag
           key={tag}
-          checked={selectedTags.includes(tag)}
-          onChange={(checked) => handleChange(tag, checked)}
+          checked={selectedTag === tag}
+          onChange={(checked) => {
+            handleChange(tag, checked);
+          }}
           onClick={() => {
-            console.log(Cookies.get('userInfo'));
+            setToggle(!toggle);
+            dispatch(checkTagName(toggle ? tag : ''));
+            if (tagName !== tag) {
+              setToggle(!toggle);
+              dispatch(checkTagName(tag));
+            }
           }}
         >
           {tag}

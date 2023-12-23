@@ -5,6 +5,7 @@ interface AppPaginationProps {
   page: number;
   pageSize: number;
   articlesCount: number | undefined;
+
   onChangeCurrentPage: (page: number) => void;
   onChangeCurrentPageSize: (pageSize: number) => void;
 }
@@ -14,9 +15,11 @@ const AppPagination = (props: AppPaginationProps) => {
     page,
     pageSize,
     articlesCount = 100,
+
     onChangeCurrentPage,
     onChangeCurrentPageSize,
   } = props;
+
   return (
     <Pagination
       current={page}
@@ -24,10 +27,8 @@ const AppPagination = (props: AppPaginationProps) => {
       defaultCurrent={CURRENT_PAGE}
       total={articlesCount}
       defaultPageSize={CURRENT_PAGE_SIZE}
-      onChange={(page: number) => onChangeCurrentPage(page)}
-      onShowSizeChange={(_, size) => {
-        onChangeCurrentPageSize(size);
-      }}
+      onChange={(page) => onChangeCurrentPage(page)}
+      onShowSizeChange={(_, size) => onChangeCurrentPageSize(size)}
     />
   );
 };
