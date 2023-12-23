@@ -10,6 +10,7 @@ import toast from 'react-hot-toast';
 import * as Yup from 'yup';
 import { AppRoutesPath } from '../router/types';
 import { yupValidator } from '../utils/yup-validator';
+import { resetAuthState } from '../store/reducers/auth/auth-slice';
 
 const { Title } = Typography;
 
@@ -96,6 +97,9 @@ const SignUp = () => {
     if (isError) {
       toast.dismiss();
       toast.error('Username or email is already used');
+      setTimeout(() => {
+        dispatch(resetAuthState());
+      }, 2000);
     }
   }, [isSuccess, isError]); // eslint-disable-line
 
