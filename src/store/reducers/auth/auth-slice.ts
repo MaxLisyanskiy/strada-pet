@@ -21,6 +21,7 @@ const authSlice = createSlice({
     resetAuthState: (state) => {
       state.userInfo = null;
       state.success = '';
+      state.error = '';
       Cookies.remove('userInfo');
     },
   },

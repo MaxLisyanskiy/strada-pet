@@ -9,9 +9,10 @@ const ProtectedProfileAndSettingsRoute = ({
   children: JSX.Element;
 }) => {
   const userInfo = useAppSelector((state) => state.auth.userInfo);
-
   if (!userInfo) {
-    toast.error('User info not found');
+    setTimeout(() => {
+      toast.error('User info not found');
+    }, 150);
 
     return <Navigate to={AppRoutesPath.SIGN_IN} />;
   }

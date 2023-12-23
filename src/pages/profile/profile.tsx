@@ -87,11 +87,11 @@ const Profile = () => {
                   </Typography>
                 </div>
                 <div className="user__content-button">
-                  <Button>
-                    <Link to={AppRoutesPath.SETTINGS}>
+                  <Link to={AppRoutesPath.SETTINGS}>
+                    <Button>
                       <SettingOutlined /> Edit Profile Settings
-                    </Link>
-                  </Button>
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </div>
