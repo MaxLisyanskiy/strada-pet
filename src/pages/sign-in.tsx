@@ -2,7 +2,7 @@ import { Button, Form, Input, Typography, Layout } from 'antd';
 import { HomeOutlined, UserOutlined } from '@ant-design/icons';
 import { useState, useEffect, ChangeEvent } from 'react';
 import { AppRoutesPath } from '../router/types';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../store/store-hooks';
 import { setCurrentPath } from '../store/reducers/breadcrumbs/breadcrumb-slice';
 import { loginUser } from '../store/reducers/auth/auth-actions';
@@ -30,15 +30,14 @@ const SignIn = () => {
   const isError = useAppSelector((state) => state.auth.error);
 
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const onSubmit = async () => {
     try {
       await validationSchema.validate(credentials, { abortEarly: false });
       credentials.email = credentials.email.toLowerCase();
       dispatch(loginUser(credentials));
-      toast.success('You have successfully logged in');
     } catch (error) {
-      toast.dismiss();
       toast.error('Invalid email or password');
     }
   };
@@ -86,12 +85,11 @@ const SignIn = () => {
   };
 
   useEffect(() => {
-    // console.log(isSuccess);
-    // if (isSuccess) {
-    //   toast.dismiss();
-    //   toast.success('You have successfully logged in');
-    //   navigate(AppRoutesPath.MAIN);
-    // }
+    if (isSuccess) {
+      toast.dismiss();
+      toast.success('You have successfully logged in');
+      navigate(AppRoutesPath.MAIN);
+    }
     if (isError) {
       toast.dismiss();
       toast.error('Email or password is not found');

@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.2.6",
+    "@hookform/resolvers": "^3.3.2",
     "@reduxjs/toolkit": "^2.0.1",
     "antd": "^5.12.2",
     "axios": "^1.6.2",

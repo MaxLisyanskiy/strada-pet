@@ -11,7 +11,9 @@ const ProtectedSignUpAndSignInRoute = ({
   const userInfo = useAppSelector((state) => state.auth.userInfo);
 
   if (userInfo) {
-    toast.error('You are already logged in');
+    setTimeout(() => {
+      toast.error('You are already logged in');
+    }, 150);
     return <Navigate to={AppRoutesPath.PROFILE} />;
   }
 
