@@ -2,6 +2,8 @@
 
 `Strada Pet` is a web application for display random users articles .
 
+[👀 Deploy Link](https://maxlisyanskiy.github.io/strada-pet/)
+
 ## Project Purpose
 
 - Develop a Single Page Application (SPA) with using React and TypeScript
