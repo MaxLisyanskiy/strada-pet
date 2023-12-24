@@ -1,9 +1,9 @@
 {
   "name": "strada-pet",
+  "homepage": "https://maxlisyanskiy.github.io/strada-pet/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://maxlisyanskiy.github.io/strada-pet/",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
