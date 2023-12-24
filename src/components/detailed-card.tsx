@@ -12,10 +12,11 @@ interface DetailedCardProps {
   title: string;
   description: string;
   image: string;
+  slug: string;
 }
 
 const DetailedCard = (props: DetailedCardProps) => {
-  const { likes, author, date, title, description, image } = props;
+  const { likes, author, date, title, description, image, slug } = props;
   const formattedDate = new Date(date).toLocaleString();
   const peaceOfDescription = description?.slice(0, 420) + '...';
 
@@ -25,9 +26,10 @@ const DetailedCard = (props: DetailedCardProps) => {
         marginBottom: '20px',
       }}
       actions={[
-        <div key="readmore">
-          <Link to={AppRoutesPath.PARAGRAPH_DETAILS}> Read more...</Link>
-        </div>,
+        <Link to={`${AppRoutesPath.PARAGRAPH_DETAILS}${slug}`}>
+          <div key="readmore">Read more...</div>
+        </Link>,
+
         <div>
           {likes} <HeartFilled />
         </div>,

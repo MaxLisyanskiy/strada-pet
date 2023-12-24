@@ -1,6 +1,6 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 
-import { articlesAPI, tagsAPI } from '../services/articles-api';
+import { articlesAPI, tagsAPI, gerCurrentPost } from '../services/articles-api';
 import themeReducer from './reducers/theme-slice';
 import authSlice from './reducers/auth/auth-slice';
 import breadcrumbSlice from './reducers/breadcrumbs/breadcrumb-slice';
@@ -13,6 +13,7 @@ const rootReducer = combineReducers({
   tagName: tagNameSlice,
   [articlesAPI.reducerPath]: articlesAPI.reducer,
   [tagsAPI.reducerPath]: tagsAPI.reducer,
+  [gerCurrentPost.reducerPath]: gerCurrentPost.reducer,
 });
 
 export const setupStore = () => {
@@ -21,7 +22,8 @@ export const setupStore = () => {
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({ serializableCheck: false }).concat(
         articlesAPI.middleware,
-        tagsAPI.middleware
+        tagsAPI.middleware,
+        gerCurrentPost.middleware
       ),
   });
 };

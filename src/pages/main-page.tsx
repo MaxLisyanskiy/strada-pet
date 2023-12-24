@@ -25,7 +25,10 @@ const MainPage = () => {
 
   updateMetaData({ title: 'Home | News App', description: 'Main page' });
 
+
   const { data, isFetching } = articlesAPI.endpoints.getAllArticles.useQuery({
+
+
     limit: Number(pageSize),
     offset: (Number(page) - 1) * Number(pageSize),
     tag: tagName,
