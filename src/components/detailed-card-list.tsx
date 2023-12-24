@@ -2,11 +2,13 @@ import { Skeleton, Result, Button } from 'antd';
 import { uid } from 'uid';
 import DetailedCard from './detailed-card';
 import { IArticlesResponse } from '../types/articles-type';
+import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
+import { SerializedError } from '@reduxjs/toolkit';
 
 interface DetailedCardListProps {
   data: IArticlesResponse | undefined;
   isLoading: boolean;
-  error?: Error | null;
+  error: Error | FetchBaseQueryError | SerializedError | undefined;
 }
 
 const DetailedCardList = (props: DetailedCardListProps) => {
@@ -67,6 +69,7 @@ const DetailedCardList = (props: DetailedCardListProps) => {
           description={article.body}
           likes={article.favoritesCount}
           image={article.author.image}
+          slug={article.slug}
         />
       ))}
     </>

@@ -1,6 +1,9 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { API_URL } from '../shared/constants';
-import { IArticlesResponse } from '../types/articles-type';
+import {
+  IArticlesResponse,
+  ParagraphDetailsInterface,
+} from '../types/articles-type';
 import { TagsResponse } from '../types/tags-type';
 
 interface GetAllArticlesParams {
@@ -39,6 +42,18 @@ export const tagsAPI = createApi({
     getAllTags: builder.query<TagsResponse, void>({
       query: () => ({
         url: 'tags',
+      }),
+    }),
+  }),
+});
+
+export const gerCurrentPost = createApi({
+  reducerPath: 'currentPost',
+  baseQuery: fetchBaseQuery({ baseUrl: API_URL }),
+  endpoints: (builder) => ({
+    getCurrentPost: builder.query<ParagraphDetailsInterface, string>({
+      query: (slug) => ({
+        url: `articles/${slug}`,
       }),
     }),
   }),

@@ -25,7 +25,7 @@ const MainPage = () => {
 
   updateMetaData({ title: 'Home | News App', description: 'Main page' });
 
-  const { data, isLoading } = articlesAPI.useGetAllArticlesQuery({
+  const { data, isLoading, error } = articlesAPI.useGetAllArticlesQuery({
     limit: Number(pageSize),
     offset: (Number(page) - 1) * Number(pageSize),
     tag: tagName,
@@ -48,7 +48,7 @@ const MainPage = () => {
       }}
     >
       <TagList />
-      <DetailedCardList data={data} isLoading={isLoading} />
+      <DetailedCardList data={data} isLoading={isLoading} error={error} />
       <AppPagination
         page={Number(page)}
         pageSize={Number(pageSize)}
