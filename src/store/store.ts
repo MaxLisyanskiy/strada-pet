@@ -1,6 +1,7 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 
 import { articlesAPI, tagsAPI, gerCurrentPost } from '../services/articles-api';
+import { getCommentaries } from '../services/comments-api';
 import themeReducer from './reducers/theme-slice';
 import authSlice from './reducers/auth/auth-slice';
 import breadcrumbSlice from './reducers/breadcrumbs/breadcrumb-slice';
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   [articlesAPI.reducerPath]: articlesAPI.reducer,
   [tagsAPI.reducerPath]: tagsAPI.reducer,
   [gerCurrentPost.reducerPath]: gerCurrentPost.reducer,
+  [getCommentaries.reducerPath]: getCommentaries.reducer,
 });
 
 export const setupStore = () => {
@@ -23,7 +25,8 @@ export const setupStore = () => {
       getDefaultMiddleware({ serializableCheck: false }).concat(
         articlesAPI.middleware,
         tagsAPI.middleware,
-        gerCurrentPost.middleware
+        gerCurrentPost.middleware,
+        getCommentaries.middleware
       ),
   });
 };
