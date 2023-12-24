@@ -8,7 +8,7 @@ import { SerializedError } from '@reduxjs/toolkit';
 interface DetailedCardListProps {
   data: IArticlesResponse | undefined;
   isLoading: boolean;
-  error: Error | FetchBaseQueryError | SerializedError | undefined;
+  error?: Error | FetchBaseQueryError | SerializedError | undefined;
 }
 
 const DetailedCardList = (props: DetailedCardListProps) => {
