@@ -30,8 +30,7 @@ const ParagraphDetails: React.FC = () => {
   updateMetaData({ title: 'Details | News App', description: 'Details page' });
 
   const { id } = useParams<{ id: string }>() || { id: '' };
-  const slug = id?.slice(3);
-  const { data, isLoading } = gerCurrentPost.useGetCurrentPostQuery(slug || '');
+  const { data, isLoading } = gerCurrentPost.useGetCurrentPostQuery(id || '');
 
   useEffect(() => {
     dispatch(
@@ -48,13 +47,20 @@ const ParagraphDetails: React.FC = () => {
           title: (
             <>
               <InfoCircleOutlined />
-              <Link to={AppRoutesPath.PARAGRAPH_DETAILS}>Details</Link>
+              <Link
+                to={`${AppRoutesPath.PARAGRAPH_DETAILS.replace(
+                  '/:id',
+                  '/'
+                )}${id}`}
+              >
+                Details
+              </Link>
             </>
           ),
         },
       ])
     );
-  }, [dispatch]);
+  }, [dispatch]); // eslint-disable-line
 
   return (
     <Layout
@@ -79,6 +85,7 @@ const ParagraphDetails: React.FC = () => {
           }}
         >
           {isLoading && <Skeleton active />}
+
           <Title level={2} style={{ color: textColor }}>
             {data?.article.title}
           </Title>
@@ -119,6 +126,7 @@ const ParagraphDetails: React.FC = () => {
           <Tag />
         </Space>
       </Space>
+
       <Space
         style={{
           marginTop: '30px',

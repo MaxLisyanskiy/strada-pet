@@ -26,7 +26,9 @@ const DetailedCard = (props: DetailedCardProps) => {
         marginBottom: '20px',
       }}
       actions={[
-        <Link to={`${AppRoutesPath.PARAGRAPH_DETAILS}${slug}`}>
+        <Link
+          to={`${AppRoutesPath.PARAGRAPH_DETAILS.replace('/:id', '/')}${slug}`}
+        >
           <div key="readmore">Read more...</div>
         </Link>,
 
