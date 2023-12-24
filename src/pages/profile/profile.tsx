@@ -26,7 +26,7 @@ const Profile = () => {
   const backgroundColor = userTheme ? '#141414' : '#474A51';
   const userCards = selectedRadio === 'my' ? ['123'] : [];
   const { userInfo } = useAppSelector((state) => state.auth);
-  const { data, isLoading } = articlesAPI.useGetAllArticlesQuery({
+  const { data, isLoading, error } = articlesAPI.useGetAllArticlesQuery({
     limit: 10,
     offset: 0,
     tag: '',
@@ -111,7 +111,11 @@ const Profile = () => {
             {!userCards.length ? (
               <Typography>No articles are here ... yet.</Typography>
             ) : (
-              <DetailedCardList data={data} isLoading={isLoading} />
+              <DetailedCardList
+                data={data}
+                isLoading={isLoading}
+                error={error}
+              />
             )}
           </div>
         </Layout>

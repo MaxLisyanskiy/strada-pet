@@ -1,6 +1,6 @@
 import { Card, Avatar } from 'antd';
 import { HeartFilled } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { AppRoutesPath } from '../router/types';
 
 const { Meta } = Card;
@@ -12,12 +12,14 @@ interface DetailedCardProps {
   title: string;
   description: string;
   image: string;
+  slug: string;
 }
 
 const DetailedCard = (props: DetailedCardProps) => {
-  const { likes, author, date, title, description, image } = props;
+  const { likes, author, date, title, description, image, slug } = props;
   const formattedDate = new Date(date).toLocaleString();
   const peaceOfDescription = description?.slice(0, 420) + '...';
+  const router = useNavigate();
 
   return (
     <Card
@@ -26,7 +28,13 @@ const DetailedCard = (props: DetailedCardProps) => {
       }}
       actions={[
         <div key="readmore">
-          <Link to={AppRoutesPath.PARAGRAPH_DETAILS}> Read more...</Link>
+          <div
+            onClick={() => {
+              router(`${AppRoutesPath.PARAGRAPH_DETAILS}${slug}`);
+            }}
+          >
+            Read more...
+          </div>
         </div>,
         <div>
           {likes} <HeartFilled />
