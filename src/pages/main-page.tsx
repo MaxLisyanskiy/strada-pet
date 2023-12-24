@@ -25,11 +25,16 @@ const MainPage = () => {
 
   updateMetaData({ title: 'Home | News App', description: 'Main page' });
 
-  const { data, isLoading, error } = articlesAPI.useGetAllArticlesQuery({
+
+  const { data, isFetching } = articlesAPI.endpoints.getAllArticles.useQuery({
+
+
     limit: Number(pageSize),
     offset: (Number(page) - 1) * Number(pageSize),
     tag: tagName,
   });
+
+  console.log(isFetching);
 
   const onChangePage = (newPage: number) => {
     setSearchParams({
@@ -48,9 +53,11 @@ const MainPage = () => {
       }}
     >
       <TagList />
-      <DetailedCardList data={data} isLoading={isLoading} error={error} />
+
+      <DetailedCardList data={data} isLoading={isFetching} />
       <AppPagination
         page={Number(page)}
+        disabled={isFetching}
         pageSize={Number(pageSize)}
         articlesCount={data?.articlesCount}
         onChangeCurrentPage={onChangePage}
