@@ -17,10 +17,9 @@ const MainPage = () => {
 
   const tagName = useAppSelector((state) => state.tagName.tagName);
   const page = searchParams.get('page') ?? String(CURRENT_PAGE);
-
   useEffect(() => {
     dispatch(setCurrentPath([{}]));
-    setSearchParams({ page, pageSize: String(pageSize), tag: tagName });
+    setSearchParams({ page: '1', pageSize: String(pageSize), tag: tagName });
   }, [dispatch, pageSize, tagName]); // eslint-disable-line
 
   updateMetaData({ title: 'Home | News App', description: 'Main page' });

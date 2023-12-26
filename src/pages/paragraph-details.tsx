@@ -8,9 +8,8 @@ import updateMetaData from '../utils/create-meta';
 import { gerCurrentPost } from '../services/articles-api';
 import { AppRoutesPath } from '../router/types';
 import Tag from '../components/tag';
-// import { getCommentaries } from '../services/comments-api';
-// import CommentList from '../components/comment-list';
-
+import { getCommentaries } from '../services/comments-api';
+import CommentList from '../components/comment-list';
 const { Title, Paragraph } = Typography;
 
 const ParagraphDetails: React.FC = () => {
@@ -23,12 +22,13 @@ const ParagraphDetails: React.FC = () => {
   updateMetaData({ title: 'Details | News App', description: 'Details page' });
 
   const { id } = useParams<{ id: string }>() || { id: '' };
-
   const { data, isLoading } = gerCurrentPost.useGetCurrentPostQuery(id || '');
-  // const { data: commentariesData } =
-  // getCommentaries.useGetAllCommentariesQuery(id);
 
-  // console.log(commentariesData);
+  const { data: commentariesData } = getCommentaries.useGetAllCommentariesQuery(
+    'Welcome-to-RealWorld-project-1' ?? ''
+  );
+
+  console.log(commentariesData);
 
   useEffect(() => {
     dispatch(
@@ -45,7 +45,14 @@ const ParagraphDetails: React.FC = () => {
           title: (
             <>
               <InfoCircleOutlined />
-              <Link to={AppRoutesPath.PARAGRAPH_DETAILS}>Details</Link>
+              <Link
+                to={`${AppRoutesPath.PARAGRAPH_DETAILS.replace(
+                  '/:id',
+                  '/'
+                )}${id}`}
+              >
+                Details
+              </Link>
             </>
           ),
         },
@@ -144,7 +151,7 @@ const ParagraphDetails: React.FC = () => {
               flexDirection: 'column',
             }}
           >
-            {/* <CommentList props={commentariesData} /> */}
+            <CommentList comments={commentariesData?.comments} />
           </div>
         )}
       </Space>
