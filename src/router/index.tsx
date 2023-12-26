@@ -8,7 +8,6 @@ import LayoutApp from '../components/layout';
 import SignIn from '../pages/sign-in';
 import SignUp from '../pages/sign-up';
 import SettingsPage from '../pages/settings';
-import NewPost from '../pages/new-post/new-post';
 import ProtectedProfileAndSettingsRoute from './private-routes/user-route';
 import ProtectedSignUpAndSignInRoute from './private-routes/auth-route';
 
@@ -57,8 +56,6 @@ const AppRoutes = () => {
             </ProtectedSignUpAndSignInRoute>
           }
         />
-
-        <Route path={AppRoutesPath.NEW_POST} element={<NewPost />} />
 
         <Route path={AppRoutesPath.NOT_FOUND_PAGE} element={<NotFoundPage />} />
       </Route>

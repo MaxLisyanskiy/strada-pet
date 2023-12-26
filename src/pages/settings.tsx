@@ -12,7 +12,6 @@ import updateMetaData from '../utils/create-meta';
 import { resetAuthState } from '../store/reducers/auth/auth-slice';
 
 const { Title } = Typography;
-const { TextArea } = Input;
 
 interface SettingsFormData {
   profilePicture: string;
@@ -115,6 +114,8 @@ const SettingsPage: React.FC = () => {
             <Form.Item>
               <Controller
                 name="profilePicture"
+                defaultValue={userInfo.image}
+                disabled
                 control={control}
                 render={({ field }) => (
                   <Input {...field} placeholder="URL of profile picture" />
@@ -124,6 +125,8 @@ const SettingsPage: React.FC = () => {
             <Form.Item>
               <Controller
                 name="username"
+                defaultValue={userInfo.username}
+                disabled
                 control={control}
                 render={({ field }) => (
                   <Input {...field} placeholder="Username" />
@@ -132,41 +135,12 @@ const SettingsPage: React.FC = () => {
             </Form.Item>
             <Form.Item>
               <Controller
-                name="bio"
-                control={control}
-                render={({ field }) => (
-                  <TextArea
-                    {...field}
-                    placeholder="Short bio about you"
-                    rows={4}
-                  />
-                )}
-              />
-            </Form.Item>
-            <Form.Item>
-              <Controller
                 name="email"
+                defaultValue={userInfo.email}
+                disabled
                 control={control}
                 render={({ field }) => <Input {...field} placeholder="Email" />}
               />
-            </Form.Item>
-            <Form.Item>
-              <Controller
-                name="newPassword"
-                control={control}
-                render={({ field }) => (
-                  <Input
-                    {...field}
-                    type="password"
-                    placeholder="New Password"
-                  />
-                )}
-              />
-            </Form.Item>
-            <Form.Item style={{ alignSelf: 'flex-end' }}>
-              <Button type="primary" htmlType="submit">
-                Update Settings
-              </Button>
             </Form.Item>
             <Form.Item style={{ alignSelf: 'flex-start' }}>
               <Button danger onClick={confirmLogout}>

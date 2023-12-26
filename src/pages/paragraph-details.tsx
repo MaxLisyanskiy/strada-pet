@@ -142,18 +142,18 @@ const ParagraphDetails: React.FC = () => {
             <Link to={AppRoutesPath.SIGN_IN}>Sign in</Link>
             <Typography>or</Typography>
             <Link to={AppRoutesPath.SIGN_UP}>sign up</Link>
-            <Typography>to add comments on this</Typography>
-            article
+            <Typography>to see comments on this article</Typography>
           </Space>
         ) : (
-          <div
+          <Layout
             style={{
               display: 'flex',
               flexDirection: 'column',
             }}
           >
+            <Title level={3}>Comments:</Title>
             <CommentList comments={commentariesData?.comments} />
-          </div>
+          </Layout>
         )}
       </Space>
     </Layout>

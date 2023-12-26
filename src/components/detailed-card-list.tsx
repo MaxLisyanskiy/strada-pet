@@ -67,7 +67,6 @@ const DetailedCardList = (props: DetailedCardListProps) => {
           date={article.createdAt}
           title={article.title}
           description={article.body}
-          likes={article.favoritesCount}
           image={article.author.image}
           slug={article.slug}
         />

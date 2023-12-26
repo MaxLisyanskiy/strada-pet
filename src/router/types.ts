@@ -5,6 +5,5 @@ export enum AppRoutesPath {
   SIGN_IN = '/strada-pet/sign-in',
   SIGN_UP = '/strada-pet/sign-up',
   SETTINGS = '/strada-pet/settings',
-  NEW_POST = '/strada-pet/new-post',
   NOT_FOUND_PAGE = '*',
 }
