@@ -10,6 +10,7 @@ import { AppRoutesPath } from '../router/types';
 import Tag from '../components/tag';
 import { getCommentaries } from '../services/comments-api';
 import CommentList from '../components/comment-list';
+
 const { Title, Paragraph } = Typography;
 
 const ParagraphDetails: React.FC = () => {
@@ -27,8 +28,6 @@ const ParagraphDetails: React.FC = () => {
   const { data: commentariesData } = getCommentaries.useGetAllCommentariesQuery(
     id ?? ''
   );
-
-  console.log(commentariesData);
 
   useEffect(() => {
     dispatch(
@@ -58,7 +57,7 @@ const ParagraphDetails: React.FC = () => {
         },
       ])
     );
-  }, [dispatch]);
+  }, [dispatch]); // eslint-disable-line
 
   return (
     <Layout
@@ -83,6 +82,7 @@ const ParagraphDetails: React.FC = () => {
           }}
         >
           {isLoading && <Skeleton active />}
+
           <Title level={2} style={{ color: textColor }}>
             {data?.article.title}
           </Title>
@@ -123,6 +123,7 @@ const ParagraphDetails: React.FC = () => {
           <Tag />
         </Space>
       </Space>
+
       <Space
         style={{
           marginTop: '30px',
