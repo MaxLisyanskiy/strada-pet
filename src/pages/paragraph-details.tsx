@@ -1,14 +1,5 @@
-import React, { useEffect } from 'react';
-import {
-  Avatar,
-  Button,
-  Form,
-  Input,
-  Layout,
-  Skeleton,
-  Space,
-  Typography,
-} from 'antd';
+import { useEffect } from 'react';
+import { Avatar, Layout, Skeleton, Space, Typography } from 'antd';
 import { InfoCircleOutlined, HomeOutlined } from '@ant-design/icons';
 import { Link, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../store/store-hooks';
@@ -17,6 +8,8 @@ import updateMetaData from '../utils/create-meta';
 import { gerCurrentPost } from '../services/articles-api';
 import { AppRoutesPath } from '../router/types';
 import Tag from '../components/tag';
+import { getCommentaries } from '../services/comments-api';
+import CommentList from '../components/comment-list';
 
 const { Title, Paragraph } = Typography;
 
@@ -31,6 +24,10 @@ const ParagraphDetails: React.FC = () => {
 
   const { id } = useParams<{ id: string }>() || { id: '' };
   const { data, isLoading } = gerCurrentPost.useGetCurrentPostQuery(id || '');
+
+  const { data: commentariesData } = getCommentaries.useGetAllCommentariesQuery(
+    id ?? ''
+  );
 
   useEffect(() => {
     dispatch(
@@ -149,26 +146,14 @@ const ParagraphDetails: React.FC = () => {
             article
           </Space>
         ) : (
-          <Form
-            size="large"
+          <div
             style={{
-              margin: '30px 0 30px 0',
-              width: '300px',
+              display: 'flex',
+              flexDirection: 'column',
             }}
           >
-            <Form.Item>
-              <Input.TextArea rows={4} placeholder="Write your comment" />
-            </Form.Item>
-            <Space
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-              }}
-            >
-              <Avatar src={data?.article.author.image} />
-              <Button type="primary">Post Comment</Button>
-            </Space>
-          </Form>
+            <CommentList comments={commentariesData?.comments} />
+          </div>
         )}
       </Space>
     </Layout>
