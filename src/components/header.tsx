@@ -1,6 +1,5 @@
 import { Menu, Button, Avatar } from 'antd';
 import { SettingOutlined } from '@ant-design/icons';
-import { EditOutlined } from '@ant-design/icons';
 import { Link, useLocation } from 'react-router-dom';
 import ThemeSwitch from './theme-switch';
 import { AppRoutesPath } from '../router/types';
@@ -16,8 +15,6 @@ const AppHeader = () => {
   const selectedKey = (() => {
     if (location.pathname === AppRoutesPath.MAIN) {
       return 'main';
-    } else if (location.pathname === AppRoutesPath.NEW_POST) {
-      return 'new-post';
     } else if (location.pathname === AppRoutesPath.SETTINGS) {
       return 'settings';
     } else if (location.pathname === AppRoutesPath.PROFILE) {
@@ -49,14 +46,6 @@ const AppHeader = () => {
           <Menu.Item key="main">
             <Button type="primary">
               <Link to={AppRoutesPath.MAIN}>To Home Page</Link>
-            </Button>
-          </Menu.Item>
-
-          <Menu.Item key="new-post">
-            <Button>
-              <Link to={AppRoutesPath.NEW_POST}>
-                <EditOutlined /> New Post
-              </Link>
             </Button>
           </Menu.Item>
 
@@ -96,6 +85,7 @@ const AppHeader = () => {
           alignItems: 'center',
           flex: 1,
           width: '100%',
+          padding: '15px',
         }}
         selectedKeys={[selectedKey]}
       >
