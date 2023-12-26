@@ -19,7 +19,6 @@ const AppTag: React.FC<AppTagProps> = ({ tagsData = {} }) => {
     setSelectedTag(checked ? tag : '');
   };
   const tagName = useAppSelector((state) => state.tagName.tagName);
-  console.log(tagName);
 
   return (
     <Space size={[0, 8]} wrap>
