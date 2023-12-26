@@ -25,7 +25,7 @@ const ParagraphDetails: React.FC = () => {
   const { data, isLoading } = gerCurrentPost.useGetCurrentPostQuery(id || '');
 
   const { data: commentariesData } = getCommentaries.useGetAllCommentariesQuery(
-    'Welcome-to-RealWorld-project-1' ?? ''
+    id ?? ''
   );
 
   console.log(commentariesData);
