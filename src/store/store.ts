@@ -6,10 +6,12 @@ import themeReducer from './reducers/theme-slice';
 import authSlice from './reducers/auth/auth-slice';
 import breadcrumbSlice from './reducers/breadcrumbs/breadcrumb-slice';
 import tagNameSlice from './reducers/tag-slice';
+import userSlice from './reducers/user/user-slice';
 
 const rootReducer = combineReducers({
   theme: themeReducer,
   auth: authSlice,
+  user: userSlice,
   breadcrumb: breadcrumbSlice,
   tagName: tagNameSlice,
   [articlesAPI.reducerPath]: articlesAPI.reducer,

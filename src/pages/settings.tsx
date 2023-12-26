@@ -10,16 +10,17 @@ import { setCurrentPath } from '../store/reducers/breadcrumbs/breadcrumb-slice';
 import { AppRoutesPath } from '../router/types';
 import updateMetaData from '../utils/create-meta';
 import { resetAuthState } from '../store/reducers/auth/auth-slice';
+import { updateUser } from '../store/reducers/user/user-actions';
 
 const { Title } = Typography;
 const { TextArea } = Input;
 
 interface SettingsFormData {
-  profilePicture: string;
+  email: string;
+  password: string;
   username: string;
   bio: string;
-  email: string;
-  newPassword: string;
+  image: string;
 }
 
 const SettingsPage: React.FC = () => {
@@ -30,6 +31,7 @@ const SettingsPage: React.FC = () => {
 
   const onSubmit = (data: SettingsFormData) => {
     console.log(data);
+    dispatch(updateUser(data));
   };
 
   const logoutClick = () => {
@@ -114,7 +116,8 @@ const SettingsPage: React.FC = () => {
           >
             <Form.Item>
               <Controller
-                name="profilePicture"
+                name="image"
+                defaultValue={userInfo.image || ''}
                 control={control}
                 render={({ field }) => (
                   <Input {...field} placeholder="URL of profile picture" />
@@ -124,6 +127,7 @@ const SettingsPage: React.FC = () => {
             <Form.Item>
               <Controller
                 name="username"
+                defaultValue={userInfo.username || ''}
                 control={control}
                 render={({ field }) => (
                   <Input {...field} placeholder="Username" />
@@ -133,6 +137,7 @@ const SettingsPage: React.FC = () => {
             <Form.Item>
               <Controller
                 name="bio"
+                defaultValue={userInfo.bio || ''}
                 control={control}
                 render={({ field }) => (
                   <TextArea
@@ -146,13 +151,15 @@ const SettingsPage: React.FC = () => {
             <Form.Item>
               <Controller
                 name="email"
+                defaultValue={userInfo.email || ''}
                 control={control}
                 render={({ field }) => <Input {...field} placeholder="Email" />}
               />
             </Form.Item>
             <Form.Item>
               <Controller
-                name="newPassword"
+                name="password"
+                defaultValue=""
                 control={control}
                 render={({ field }) => (
                   <Input
