@@ -151,7 +151,14 @@ const ParagraphDetails: React.FC = () => {
               flexDirection: 'column',
             }}
           >
-            <Title level={3}>Comments:</Title>
+            <Title
+              level={3}
+              style={{
+                textAlign: 'center',
+              }}
+            >
+              Comments:
+            </Title>
             <CommentList comments={commentariesData?.comments} />
           </Layout>
         )}
