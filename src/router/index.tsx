@@ -15,8 +15,9 @@ import ProtectedSignUpAndSignInRoute from './private-routes/auth-route';
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path={AppRoutesPath.MAIN} element={<LayoutApp />}>
-        <Route index element={<MainPage />} />
+      <Route element={<LayoutApp />}>
+        <Route path={AppRoutesPath.MAIN} element={<MainPage />} />
+
         <Route
           path={AppRoutesPath.PARAGRAPH_DETAILS}
           element={<ParagraphDetails />}
@@ -30,6 +31,7 @@ const AppRoutes = () => {
             </ProtectedProfileAndSettingsRoute>
           }
         />
+
         <Route
           path={AppRoutesPath.SETTINGS}
           element={
@@ -57,6 +59,7 @@ const AppRoutes = () => {
         />
 
         <Route path={AppRoutesPath.NEW_POST} element={<NewPost />} />
+
         <Route path={AppRoutesPath.NOT_FOUND_PAGE} element={<NotFoundPage />} />
       </Route>
     </Routes>
